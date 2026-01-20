@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -101,46 +102,61 @@
             width: 80%;
         }
 
-        /* Hero Section */
-        .hero {
-            background: url('https://images.pexels.com/photos/35044387/pexels-photo-35044387.jpeg') center/cover no-repeat;
+        /* Hero Section - Carousel Specific */
+        #heroCarousel {
             min-height: 100vh;
             display: flex;
             align-items: center;
-            color: var(--white); /* Changed text color for readability on image background */
             position: relative;
             overflow: hidden;
         }
 
-        /* Subtle overlay for text readability on the hero image */
-        .hero::before {
+        #heroCarousel .carousel-item {
+            height: 100vh; /* Ensure carousel items take full viewport height */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        #heroCarousel .carousel-item::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.2); /* Very subtle dark overlay */
-            z-index: 0; /* Ensures content is above this overlay */
+            background: rgba(0, 0, 0, 0.3); /* Slightly darker overlay for text */
+            z-index: 0;
         }
-
-        .hero-content {
-            position: relative;
-            z-index: 1; /* Ensures content is above the ::before overlay */
+        #heroCarousel .carousel-caption {
+            position: relative; /* Ensure caption is above overlay */
+            z-index: 1;
+            text-align: left;
+            left: 0;
+            right: auto;
+            bottom: auto;
+            padding-bottom: 0;
+            padding-top: 0;
+            width: 100%;
+            max-width: 650px; /* Limit width of text for readability */
         }
 
         .hero h1 {
             font-size: 3.5rem;
             font-weight: 800;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Re-added text-shadow for readability */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            color: var(--white);
             animation: fadeInUp 1s ease;
         }
 
         .hero p {
             font-size: 1.3rem;
             margin-bottom: 30px;
-            opacity: 1; /* Ensure full visibility for text */
+            opacity: 1;
+            color: var(--white);
             animation: fadeInUp 1s ease 0.2s backwards;
         }
 
@@ -230,6 +246,42 @@
             line-height: 1.8;
             color: var(--gray);
         }
+        
+        /* Video Section */
+        .video-section {
+            background: var(--dark);
+            color: var(--white);
+            padding-top: 60px; /* Reduced padding-top */
+            padding-bottom: 60px; /* Reduced padding-bottom */
+        }
+        .video-section .section-title h2,
+        .video-section .section-title .subtitle {
+            color: var(--white);
+        }
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            margin-bottom: 20px; /* Added margin for spacing between videos */
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        .video-description {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.8);
+        }
+
 
         /* Doctors Section */
         .doctor-profile-row {
@@ -316,6 +368,22 @@
                 width: 100%;
                 text-align: center;
             }
+            #heroCarousel .carousel-caption {
+                text-align: center;
+                max-width: none;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero p {
+                font-size: 1.1rem;
+            }
+            .video-section .col-lg-6 .video-container {
+                margin-bottom: 30px; /* More space on smaller screens if they stack */
+            }
+            .video-section .col-lg-6:last-child .video-container {
+                margin-bottom: 0; /* Remove bottom margin for the last video on smaller screens */
+            }
         }
 
 
@@ -358,6 +426,36 @@
         }
 
         .service-desc {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* Specialties Section */
+        .specialty-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            text-align: center;
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+        .specialty-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(30, 136, 229, 0.15);
+        }
+        .specialty-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        .specialty-card h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        .specialty-card p {
             color: var(--gray);
             font-size: 0.95rem;
         }
@@ -438,6 +536,173 @@
         .lab-list i {
             color: var(--accent);
             font-size: 1.3rem;
+        }
+
+        /* Patient Resources / FAQ Section */
+        .faq-item {
+            margin-bottom: 20px;
+        }
+        .accordion-button {
+            background-color: var(--primary) !important;
+            color: var(--white) !important;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        .accordion-button:not(.collapsed) {
+            background-color: var(--primary-dark) !important;
+            box-shadow: none;
+        }
+        .accordion-button::after {
+            filter: brightness(0) invert(1); /* Makes the arrow white */
+        }
+        .accordion-body {
+            background-color: var(--white);
+            color: var(--gray);
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            padding: 20px;
+            font-size: 0.95rem;
+        }
+
+        /* Medical Dictionary A-Z Section */
+        .alphabet-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+        .alphabet-btn {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--white);
+            font-weight: 700;
+            font-size: 1.5rem;
+            width: 100%;
+            padding: 15px 0;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            text-decoration: none;
+            display: block;
+            position: relative;
+            overflow: hidden;
+        }
+        .alphabet-btn:hover, .alphabet-btn.active {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(30, 136, 229, 0.3);
+            color: var(--white);
+            text-decoration: none;
+            background: var(--primary-dark); /* Darker on active/hover */
+        }
+        .alphabet-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.2);
+            transition: all 0.5s ease;
+        }
+        .alphabet-btn:hover::before, .alphabet-btn.active::before {
+            left: 100%;
+        }
+        .disease-list-container {
+            display: none; /* Hidden by default */
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            padding: 30px;
+            margin-top: 30px;
+        }
+        .disease-item {
+            cursor: pointer;
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--light-bg);
+            transition: all 0.2s ease;
+            color: var(--dark);
+            font-weight: 500;
+        }
+        .disease-item:hover, .disease-item.active {
+            background: var(--light-bg);
+            color: var(--primary);
+            padding-left: 20px;
+        }
+        .disease-item:last-child {
+            border-bottom: none;
+        }
+        .disease-details-container {
+            display: none; /* Hidden by default */
+            background: var(--light-bg);
+            border-radius: 15px;
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+        .disease-details-container h4 {
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        .disease-details-container p {
+            color: var(--gray);
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+        .disease-details-container strong {
+            color: var(--dark);
+        }
+        .disclaimer {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-top: 20px;
+            border-top: 1px solid var(--light-bg);
+            padding-top: 15px;
+        }
+
+        /* Gallery Section */
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(30, 136, 229, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        .gallery-overlay i {
+            color: var(--white);
+            font-size: 2.5rem;
         }
 
         /* Appointment Section */
@@ -731,14 +996,6 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
             .section-title h2 {
                 font-size: 2rem;
             }
@@ -789,8 +1046,13 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#video-insights">Insights</a></li>
                     <li class="nav-item"><a class="nav-link" href="#doctors">Doctors</a></li>
                     <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#specialties">Specialties</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#patient-resources">Resources</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#medical-dictionary">Dictionary</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
                     <li class="nav-item"><a class="nav-link" href="#appointment">Appointment</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                 </ul>
@@ -799,25 +1061,145 @@
     </nav>
 
     <main>
-        <!-- Hero Section -->
-        <section class="hero" id="home">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-7 hero-content">
-                        <h1 class="royal-font">Professional Healthcare for You & Your Family</h1>
-                        <p>Experienced doctors, modern facilities, and easy appointment booking — all under one roof.</p>
-                        <div class="d-flex flex-wrap gap-3">
-                            <a href="#appointment" class="btn-primary-custom">
-                                <i class="fas fa-calendar-check me-2"></i>Book Appointment
-                            </a>
-                            <a href="https://wa.me/923184195665" class="btn-whatsapp" target="_blank" rel="noopener noreferrer">
-                                <i class="fab fa-whatsapp me-2"></i>WhatsApp Now
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <section id="hero">
+  <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="4000">
+    <div class="carousel-indicators">
+      <!-- 15 Buttons -->
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="3"></button>
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="4"></button>
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="5"></button>
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="6"></button>
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="7"></button>
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="8"></button>
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="9"></button>
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="10"></button>
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="11"></button>
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="12"></button>
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="13"></button>
+      <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="14"></button>
+    </div>
+
+    <div class="carousel-inner">
+      <!-- Slide 1 -->
+      <div class="carousel-item active" style="background-image: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)), url('https://images.pexels.com/photos/4226153/pexels-photo-4226153.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920'); background-size: cover; background-position: center; min-height: 90vh;">
+        <div class="carousel-caption">
+          <h1>Trusted Doctors. Proven Care.</h1>
+          <p>Professional healthcare with modern facilities and expert teams.</p>
+        </div>
+      </div>
+      <!-- Slide 2 -->
+      <div class="carousel-item" style="background-image: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)), url('https://images.pexels.com/photos/3912983/pexels-photo-3912983.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920'); background-size: cover; background-position: center; min-height: 90vh;">
+        <div class="carousel-caption">
+          <h1>Advanced Medical Laboratories</h1>
+          <p>Accurate diagnostics with modern technology.</p>
+        </div>
+      </div>
+      <!-- Slide 3 -->
+      <div class="carousel-item" style="background-image: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)), url('https://images.pexels.com/photos/3825584/pexels-photo-3825584.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920'); background-size: cover; background-position: center; min-height: 90vh;">
+        <div class="carousel-caption">
+          <h1>Compassionate Patient Care</h1>
+          <p>We treat patients, not just symptoms.</p>
+        </div>
+      </div>
+      <!-- Slide 4 -->
+      <div class="carousel-item" style="background-image: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)), url('https://images.pexels.com/photos/4491455/pexels-photo-4491455.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920'); background-size: cover; background-position: center; min-height: 90vh;">
+        <div class="carousel-caption">
+          <h1>Modern Operation Theaters</h1>
+          <p>Safety, precision, and advanced surgical care.</p>
+        </div>
+      </div>
+      <!-- Slide 5 -->
+      <div class="carousel-item" style="background-image: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)), url('https://images.pexels.com/photos/3845763/pexels-photo-3845763.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920'); background-size: cover; background-position: center; min-height: 90vh;">
+        <div class="carousel-caption">
+          <h1>Emergency & Critical Care</h1>
+          <p>24/7 readiness when it matters most.</p>
+        </div>
+      </div>
+      <!-- Slide 6 -->
+      <div class="carousel-item" style="background-image: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)), url('https://images.pexels.com/photos/4056713/pexels-photo-4056713.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920'); background-size: cover; background-position: center; min-height: 90vh;">
+        <div class="carousel-caption">
+          <h1>Experienced Medical Teams</h1>
+          <p>Qualified professionals you can trust.</p>
+        </div>
+      </div>
+      <!-- Slide 7 -->
+      <div class="carousel-item" style="background-image: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)), url('https://images.pexels.com/photos/4173216/pexels-photo-4173216.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920'); background-size: cover; background-position: center; min-height: 90vh;">
+        <div class="carousel-caption">
+          <h1>Patient-Focused Treatment</h1>
+          <p>Clear communication and personalized care.</p>
+        </div>
+      </div>
+      <!-- Slide 8 -->
+      <div class="carousel-item" style="background-image: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)), url('https://images.pexels.com/photos/4226123/pexels-photo-4226123.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920'); background-size: cover; background-position: center; min-height: 90vh;">
+        <div class="carousel-caption">
+          <h1>Clean & Modern Facilities</h1>
+          <p>Designed for comfort and safety.</p>
+        </div>
+      </div>
+      <!-- Slide 9 -->
+      <div class="carousel-item" style="background-image: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)), url('https://images.pexels.com/photos/4173230/pexels-photo-4173230.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920'); background-size: cover; background-position: center; min-height: 90vh;">
+        <div class="carousel-caption">
+          <h1>Women & Child Care</h1>
+          <p>Specialized care for every life stage.</p>
+        </div>
+      </div>
+      <!-- Slide 10 -->
+      <div class="carousel-item" style="background-image: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)), url('https://images.pexels.com/photos/4226174/pexels-photo-4226174.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920'); background-size: cover; background-position: center; min-height: 90vh;">
+        <div class="carousel-caption">
+          <h1>Technology-Driven Healthcare</h1>
+          <p>Smart systems for better outcomes.</p>
+        </div>
+      </div>
+      <!-- Slide 11 -->
+      <div class="carousel-item" style="background-image: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)), url('https://images.pexels.com/photos/4226126/pexels-photo-4226126.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920'); background-size: cover; background-position: center; min-height: 90vh;">
+        <div class="carousel-caption">
+          <h1>Accurate Medical Reporting</h1>
+          <p>Clear, fast, and reliable results.</p>
+        </div>
+      </div>
+      <!-- Slide 12 -->
+      <div class="carousel-item" style="background-image: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)), url('https://images.pexels.com/photos/4226150/pexels-photo-4226150.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920'); background-size: cover; background-position: center; min-height: 90vh;">
+        <div class="carousel-caption">
+          <h1>Dedicated Healthcare Staff</h1>
+          <p>Care built on experience and ethics.</p>
+        </div>
+      </div>
+      <!-- Slide 13 -->
+      <div class="carousel-item" style="background-image: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)), url('https://images.pexels.com/photos/4226152/pexels-photo-4226152.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920'); background-size: cover; background-position: center; min-height: 90vh;">
+        <div class="carousel-caption">
+          <h1>Complete Clinical Solutions</h1>
+          <p>Consultation, diagnosis, and treatment.</p>
+        </div>
+      </div>
+      <!-- Slide 14 -->
+      <div class="carousel-item" style="background-image: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)), url('https://images.pexels.com/photos/4226161/pexels-photo-4226161.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920'); background-size: cover; background-position: center; min-height: 90vh;">
+        <div class="carousel-caption">
+          <h1>Safe Surgical Environment</h1>
+          <p>Built for precision and care.</p>
+        </div>
+      </div>
+      <!-- Slide 15 -->
+      <div class="carousel-item" style="background-image: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)), url('https://images.pexels.com/photos/4226165/pexels-photo-4226165.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=1080&w=1920'); background-size: cover; background-position: center; min-height: 90vh;">
+        <div class="carousel-caption">
+          <h1>Your Health. Our Responsibility.</h1>
+          <p>Healthcare you can rely on.</p>
+        </div>
+      </div>
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</section>
 
         <!-- About Section -->
         <section class="about-section section-padding" id="about">
@@ -828,13 +1210,48 @@
                 </div>
                 <div class="row justify-content-center">
                     <div class="col-lg-10" data-aos="fade-up" data-aos-delay="100">
-                        <p class="about-content">
-                            CarePlus Medical Clinic is committed to providing reliable, affordable, and quality healthcare services for individuals and families. Our experienced doctors, modern medical equipment, and patient-friendly environment ensure accurate diagnosis and effective treatment for all age groups. We believe in compassionate care and strive to create a comfortable and trusting atmosphere for every patient.
+                        <p class="about-content text-center mb-4">
+                            CarePlus Medical Clinic stands as a beacon of reliable, affordable, and quality healthcare services for individuals and families in Multan. Our foundation is built on a commitment to patient-centric care, integrating advanced medical practices with a compassionate approach. We understand that health is a journey, and we are here to support you every step of the way, focusing on both treatment and prevention.
+                        </p>
+                        <p class="about-content text-center">
+                            Our clinic prides itself on a team of highly experienced and dedicated doctors, equipped with modern medical technology to ensure accurate diagnoses and effective treatments for all age groups. From general check-ups to specialized consultations, we maintain a patient-friendly environment where comfort and trust are paramount. Your health is our priority, and we strive to empower our community with accessible and superior healthcare solutions, fostering a healthier tomorrow.
                         </p>
                     </div>
                 </div>
             </div>
         </section>
+
+        <!-- Video Insights Section -->
+        <section class="video-section section-padding" id="video-insights">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up">
+                    <div class="subtitle">Clinic Insights</div>
+                    <h2 class="royal-font">Discover CarePlus Through Videos</h2>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-10" data-aos="fade-up" data-aos-delay="100">
+                        <p class="text-center mb-5 video-description">
+                            Take a virtual tour of our clinic, meet our staff, and learn more about our commitment to your health through these informative videos. Get a closer look at our facilities and the caring environment we've created.
+                        </p>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="video-container">
+                                    <iframe src="https://www.youtube.com/embed/n4a6D6zD10k" 
+                                        title="CarePlus Clinic Tour" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="video-container">
+                                    <iframe src="https://www.youtube.com/embed/5T5iV12pS2Y" 
+                                        title="Meet Our Doctors" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
 <!-- DOCTOR SECTION -->
  <section class="section-padding" id="doctors">
     <div class="container">
@@ -858,7 +1275,7 @@
                             <i class="fas fa-award me-2"></i>10+ Years Clinical Experience
                         </div>
                         <p class="doctor-bio">
-                            Dr. Ahmed Khan is a highly respected General Physician with extensive experience in diagnosing and treating a wide range of medical conditions. He is dedicated to providing personalized care and focuses on preventive health.
+                            Dr. Ahmed Khan is a highly respected General Physician with extensive experience in diagnosing and treating a wide range of medical conditions, from common colds and flu to more complex chronic diseases. He is dedicated to providing personalized, evidence-based care and focuses strongly on preventive health, patient education, and promoting overall wellness for individuals and families.
                         </p>
                     </div>
                 </div>
@@ -878,7 +1295,7 @@
                             <i class="fas fa-award me-2"></i>9+ Years Experience in Dermatology
                         </div>
                         <p class="doctor-bio">
-                            Dr. Usman Ali offers expert care for various skin conditions, including acne, eczema, and other dermatological concerns. He is committed to helping patients achieve healthy and radiant skin.
+                            Dr. Usman Ali offers expert care for various skin conditions, including acne, eczema, psoriasis, dermatitis, hair loss, and other dermatological concerns. He is committed to helping patients achieve healthy and radiant skin through advanced diagnostic techniques, evidence-based treatments, and personalized skincare regimens tailored to individual needs.
                         </p>
                     </div>
                 </div>
@@ -898,7 +1315,7 @@
                             <i class="fas fa-award me-2"></i>7+ Years Experience in Child Healthcare
                         </div>
                         <p class="doctor-bio">
-                            Dr. Fatima Zahra is a compassionate Pediatrician dedicated to the health and well-being of children from infancy through adolescence. She provides comprehensive care, vaccinations, and growth monitoring.
+                            Dr. Fatima Zahra is a compassionate Pediatrician dedicated to the health and well-being of children from infancy through adolescence. She provides comprehensive care, including routine check-ups, vaccinations, growth and developmental monitoring, and expert advice for parents on child nutrition, safety, and common childhood illnesses. Her gentle approach ensures a comfortable experience for young patients.
                         </p>
                     </div>
                 </div>
@@ -918,7 +1335,7 @@
                             <i class="fas fa-award me-2"></i>12+ Years Experience in Surgery
                         </div>
                         <p class="doctor-bio">
-                            Dr. Ayesha Imtiaz is a skilled General Surgeon, providing consultations and performing minor surgical procedures within the clinic. She focuses on patient safety and effective recovery.
+                            Dr. Ayesha Imtiaz is a skilled General Surgeon, providing consultations and performing minor surgical procedures within the clinic, such as excision of small lumps, wound debridement, and abscess drainage. She focuses on patient safety, meticulous surgical techniques, and effective post-operative recovery, specializing in common surgical conditions requiring outpatient care and offering expert pre-surgical evaluations.
                         </p>
                     </div>
                 </div>
@@ -938,7 +1355,7 @@
                             <i class="fas fa-award me-2"></i>8+ Years Experience in Women & Maternal Care
                         </div>
                         <p class="doctor-bio">
-                            Dr. Hina Khalid specializes in women's health, offering expert gynecological care, prenatal services, and family planning advice. She is known for her empathetic approach and commitment to empowering women through health education.
+                            Dr. Hina Khalid specializes in women's health, offering expert gynecological care, comprehensive prenatal and postnatal services, family planning advice, and management of various women's health issues. She is known for her empathetic approach and unwavering commitment to empowering women through health education, personalized care, and comprehensive support at every life stage.
                         </p>
                     </div>
                 </div>
@@ -958,7 +1375,7 @@
                             <i class="fas fa-award me-2"></i>6+ Years Experience in Child Healthcare
                         </div>
                         <p class="doctor-bio">
-                            Dr. Sana Rehman is a dedicated Pediatrician providing child healthcare services, immunizations, and wellness checkups. She ensures a caring environment for children and their families.
+                            Dr. Sana Rehman is a dedicated Pediatrician providing child healthcare services, including routine immunizations, thorough wellness checkups, and treatment for common childhood ailments. She ensures a caring, friendly, and supportive environment for children and their families, focusing on early development, preventative health measures, and effective health management from birth to adolescence.
                         </p>
                     </div>
                 </div>
@@ -982,7 +1399,7 @@
                                 <i class="fas fa-stethoscope"></i>
                             </div>
                             <h3 class="service-title">General Medical Checkups</h3>
-                            <p class="service-desc">Comprehensive health assessments to monitor your well-being.</p>
+                            <p class="service-desc">Comprehensive health assessments, preventive care, and routine screenings to monitor your overall well-being and detect issues early, ensuring proactive health management.</p>
                         </div>
                     </div>
 
@@ -992,7 +1409,7 @@
                                 <i class="fas fa-thermometer-half"></i>
                             </div>
                             <h3 class="service-title">Fever, Flu & Infection Treatment</h3>
-                            <p class="service-desc">Prompt diagnosis and effective treatment for common illnesses.</p>
+                            <p class="service-desc">Prompt diagnosis and effective treatment for common illnesses, including viral fevers, influenza, and various bacterial infections, ensuring quick and complete recovery.</p>
                         </div>
                     </div>
 
@@ -1002,7 +1419,7 @@
                                 <i class="fas fa-heartbeat"></i>
                             </div>
                             <h3 class="service-title">Blood Pressure & Diabetes Management</h3>
-                            <p class="service-desc">Expert care and lifestyle guidance for chronic conditions.</p>
+                            <p class="service-desc">Expert care, continuous monitoring, and personalized lifestyle guidance for chronic conditions like hypertension and diabetes, helping you maintain a healthy and balanced life.</p>
                         </div>
                     </div>
 
@@ -1012,7 +1429,7 @@
                                 <i class="fas fa-venus"></i>
                             </div>
                             <h3 class="service-title">Women Health & Gynecology Care</h3>
-                            <p class="service-desc">Specialized services for women's reproductive health and wellness.</p>
+                            <p class="service-desc">Specialized services dedicated to women's reproductive health, including prenatal and postnatal care, effective family planning, and comprehensive gynecological consultations.</p>
                         </div>
                     </div>
 
@@ -1022,7 +1439,7 @@
                                 <i class="fas fa-baby"></i>
                             </div>
                             <h3 class="service-title">Child Health Consultation</h3>
-                            <p class="service-desc">Caring pediatric consultations for your child's growth and health.</p>
+                            <p class="service-desc">Caring pediatric consultations for your child's optimal growth, healthy development, routine immunizations, and effective treatment of common childhood illnesses.</p>
                         </div>
                     </div>
 
@@ -1032,7 +1449,102 @@
                                 <i class="fas fa-band-aid"></i>
                             </div>
                             <h3 class="service-title">Minor Medical Procedures</h3>
-                            <p class="service-desc">Safe and efficient handling of minor injuries and procedures.</p>
+                            <p class="service-desc">Safe and efficient handling of minor injuries, precise wound dressings, careful sutures, and other small outpatient medical procedures performed with utmost care.</p>
+                        </div>
+                    </div>
+                     <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="700">
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-lungs"></i>
+                            </div>
+                            <h3 class="service-title">Respiratory Illness Treatment</h3>
+                            <p class="service-desc">Accurate diagnosis and effective management of respiratory conditions like asthma, acute bronchitis, chronic obstructive pulmonary disease (COPD) exacerbations, and seasonal allergies for clear and comfortable breathing.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="800">
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-bone"></i>
+                            </div>
+                            <h3 class="service-title">Orthopedic Consultation (Minor)</h3>
+                            <p class="service-desc">Initial assessment and treatment for minor bone and joint issues, sprains, strains, muscle pain, and basic fracture care, with appropriate referrals for complex cases.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="900">
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <h3 class="service-title">Neurological Screening (Basic)</h3>
+                            <p class="service-desc">Basic screenings and initial evaluations for common neurological symptoms such as headaches, migraines, dizziness, vertigo, and nerve pain, with appropriate guidance and referrals.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Medical Specialties Section -->
+        <section class="section-padding" id="specialties">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up">
+                    <div class="subtitle">Our Expertise</div>
+                    <h2 class="royal-font">Specialized Medical Care</h2>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="specialty-card">
+                            <div class="specialty-icon"><i class="fas fa-user-md"></i></div>
+                            <h4>General Medicine</h4>
+                            <p>Comprehensive primary care, chronic disease management, and preventive health services for all ages.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                        <div class="specialty-card">
+                            <div class="specialty-icon"><i class="fas fa-baby-carriage"></i></div>
+                            <h4>Pediatrics</h4>
+                            <p>Dedicated healthcare for infants, children, and adolescents, including vaccinations and developmental assessments.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                        <div class="specialty-card">
+                            <div class="specialty-icon"><i class="fas fa-hand-holding-medical"></i></div>
+                            <h4>Dermatology</h4>
+                            <p>Expert care for skin, hair, and nail conditions, including acne, eczema, and minor skin procedures.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                        <div class="specialty-card">
+                            <div class="specialty-icon"><i class="fas fa-female"></i></div>
+                            <h4>Gynecology</h4>
+                            <p>Specialized care for women's reproductive health, family planning, prenatal and postnatal support.</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                        <div class="specialty-card">
+                            <div class="specialty-icon"><i class="fas fa-tooth"></i></div>
+                            <h4>Dental Health (Basic)</h4>
+                            <p>Basic dental consultations, oral hygiene advice, and referrals for advanced dental care.</p>
+                        </div>
+                    </div>
+                     <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="600">
+                        <div class="specialty-card">
+                            <div class="specialty-icon"><i class="fas fa-ear-dropper"></i></div>
+                            <h4>ENT (Basic)</h4>
+                            <p>Evaluation and initial treatment for common ear, nose, and throat issues, including infections and allergies.</p>
+                        </div>
+                    </div>
+                     <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="700">
+                        <div class="specialty-card">
+                            <div class="specialty-icon"><i class="fas fa-eye"></i></div>
+                            <h4>Ophthalmology (Basic)</h4>
+                            <p>Basic eye check-ups, vision screenings, and consultations for common eye concerns, with referral services.</p>
+                        </div>
+                    </div>
+                     <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="800">
+                        <div class="specialty-card">
+                            <div class="specialty-icon"><i class="fas fa-lungs-virus"></i></div>
+                            <h4>Pulmonology (Basic)</h4>
+                            <p>Initial assessment and management for minor lung and respiratory system concerns like mild asthma.</p>
                         </div>
                     </div>
                 </div>
@@ -1040,7 +1552,7 @@
         </section>
 
         <!-- Facilities Section -->
-        <section class="section-padding">
+        <section class="section-padding" style="background: var(--light-bg);">
             <div class="container">
                 <div class="section-title" data-aos="fade-up">
                     <div class="subtitle">Our Facilities</div>
@@ -1054,7 +1566,7 @@
                             </div>
                             <div class="facility-content">
                                 <h4>Modern Examination Rooms</h4>
-                                <p>Equipped with the latest medical tools for accurate diagnosis.</p>
+                                <p>Our well-lit, spacious, and sterilized examination rooms are equipped with the latest medical tools and diagnostic technology for accurate assessments and patient comfort.</p>
                             </div>
                         </div>
                     </div>
@@ -1066,7 +1578,7 @@
                             </div>
                             <div class="facility-content">
                                 <h4>Digital Blood Pressure Monitoring</h4>
-                                <p>Precise and reliable blood pressure readings.</p>
+                                <p>We utilize advanced digital blood pressure monitoring systems to provide precise, reliable, and consistent readings for effective cardiovascular health management and early detection.</p>
                             </div>
                         </div>
                     </div>
@@ -1078,7 +1590,7 @@
                             </div>
                             <div class="facility-content">
                                 <h4>Clean & Comfortable Waiting Area</h4>
-                                <p>A relaxing environment for patients and their companions.</p>
+                                <p>Experience a relaxing, tranquil, and hygienic environment in our spacious waiting area, meticulously designed for the utmost comfort of our patients and their companions.</p>
                             </div>
                         </div>
                     </div>
@@ -1089,8 +1601,8 @@
                                 <i class="fas fa-pills"></i>
                             </div>
                             <div class="facility-content">
-                                <h4>On-site Pharmacy (Demo Purpose)</h4>
-                                <p>Convenience of essential medicines available within the clinic.</p>
+                                <h4>On-site Pharmacy</h4>
+                                <p>For your enhanced convenience, we feature an on-site pharmacy offering a wide range of essential medicines readily available immediately after your consultation.</p>
                             </div>
                         </div>
                     </div>
@@ -1102,7 +1614,18 @@
                             </div>
                             <div class="facility-content">
                                 <h4>Wheelchair Friendly Access</h4>
-                                <p>Ensuring easy access for all patients.</p>
+                                <p>Our clinic is thoughtfully equipped with accessible ramps, wide doorways, and facilities, ensuring easy and comfortable access for all patients, including those with mobility challenges.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6" data-aos="fade-left" data-aos-delay="300">
+                        <div class="facility-item">
+                            <div class="facility-icon">
+                                <i class="fas fa-restroom"></i>
+                            </div>
+                            <div class="facility-content">
+                                <h4>Hygienic Restrooms</h4>
+                                <p>We maintain impeccably clean, regularly sanitized, and well-stocked restrooms for the comfort, convenience, and hygiene of all our valued visitors and staff.</p>
                             </div>
                         </div>
                     </div>
@@ -1120,16 +1643,244 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-8" data-aos="fade-up" data-aos-delay="100">
                         <ul class="lab-list">
-                            <li><i class="fas fa-check-circle"></i> Blood Sugar Test</li>
-                            <li><i class="fas fa-check-circle"></i> Complete Blood Count (CBC)</li>
-                            <li><i class="fas fa-check-circle"></i> Cholesterol Test</li>
-                            <li><i class="fas fa-check-circle"></i> Urine Examination</li>
+                            <li><i class="fas fa-check-circle"></i> Blood Sugar Test (Random & Fasting) - For diabetes screening and management.</li>
+                            <li><i class="fas fa-check-circle"></i> Complete Blood Count (CBC) with ESR - For detecting anemia, infection, and inflammation.</li>
+                            <li><i class="fas fa-check-circle"></i> Cholesterol & Lipid Profile Test - For assessing cardiovascular disease risk.</li>
+                            <li><i class="fas fa-check-circle"></i> Urine Examination (Complete) - For kidney function, urinary tract infections, and other metabolic conditions.</li>
+                            <li><i class="fas fa-check-circle"></i> Liver Function Tests (LFTs) - To evaluate liver health and detect liver damage.</li>
+                            <li><i class="fas fa-check-circle"></i> Kidney Function Tests (KFTs) - To assess kidney performance and detect renal issues.</li>
+                            <li><i class="fas fa-check-circle"></i> Thyroid Function Tests (TFTs) - For diagnosing thyroid disorders like hypothyroidism or hyperthyroidism.</li>
+                            <li><i class="fas fa-check-circle"></i> Hepatitis B & C Screening - For detecting viral hepatitis infections.</li>
+                            <li><i class="fas fa-check-circle"></i> Blood Grouping & Rh Factor - Essential for transfusions and pregnancy.</li>
+                            <li><i class="fas fa-check-circle"></i> Dengue PCR & Antigen Test - For early and accurate detection of Dengue fever.</li>
                         </ul>
                         <div class="text-center mt-4">
                             <p style="font-size: 1.1rem; opacity: 0.9;">
                                 <i class="fas fa-flask me-2"></i>
-                                Partner laboratory services available for accurate and timely testing.
+                                Partner laboratory services available for accurate and timely testing, ensuring comprehensive diagnostic support and reliable results.
                             </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Patient Resources / FAQ Section -->
+        <section class="section-padding" id="patient-resources" style="background: var(--light-bg);">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up">
+                    <div class="subtitle">Patient Resources</div>
+                    <h2 class="royal-font">Frequently Asked Questions</h2>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-9" data-aos="fade-up" data-aos-delay="100">
+                        <div class="accordion" id="faqAccordion">
+                            <div class="accordion-item faq-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        What are your clinic's operating hours and days?
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Our clinic operates from Monday to Saturday, between 10:00 AM and 8:00 PM. We are closed on Sundays to allow our staff to rest and prepare for the week ahead.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item faq-item">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        What is the best way to book an appointment with a doctor?
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        You can conveniently book an appointment by either calling our reception directly at +92 318 4195665 or by sending us a message on WhatsApp to the same number. Our friendly staff will promptly assist you in scheduling your visit.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item faq-item">
+                                <h2 class="accordion-header" id="headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        Do you accommodate walk-in patients or is an appointment always necessary?
+                                    </button>
+                                </h2>
+                                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        While we highly recommend booking an appointment in advance to minimize waiting times and guarantee a doctor's availability, we do accept walk-in patients, especially for urgent care needs. However, service for walk-ins is subject to current doctor availability.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item faq-item">
+                                <h2 class="accordion-header" id="headingFour">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                        What types of medical conditions do your general physicians commonly treat?
+                                    </button>
+                                </h4>
+                                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Our experienced general physicians treat a comprehensive range of common medical conditions. These include acute illnesses like colds, flu, fevers, and various infections, as well as chronic disease management such as hypertension (high blood pressure) and diabetes. They also provide minor injury care, general health check-ups, and essential preventive health services.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-item faq-item">
+                                <h2 class="accordion-header" id="headingFive">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                        Are laboratory and diagnostic services readily available at the clinic?
+                                    </button>
+                                </h2>
+                                <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Yes, we offer a range of essential on-site lab tests, including blood sugar, Complete Blood Count (CBC), cholesterol, and urine examination. For more advanced or specialized testing, we have established strong partnerships with reputable external laboratories to ensure you receive accurate and timely diagnostic support.
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="accordion-item faq-item">
+                                <h2 class="accordion-header" id="headingSix">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                        What makes CarePlus Medical Clinic different from other clinics?
+                                    </button>
+                                </h2>
+                                <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        CarePlus Medical Clinic distinguishes itself through its patient-centric approach, combining experienced doctors, modern facilities, and a compassionate environment. We prioritize personalized care, accurate diagnostics with advanced equipment, and a commitment to preventive health, ensuring a holistic healthcare experience for every family member.
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="accordion-item faq-item">
+                                <h2 class="accordion-header" id="headingSeven">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                                        What should I bring to my first appointment?
+                                    </button>
+                                </h2>
+                                <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        For your first appointment, please bring your national ID card, any previous medical records or test results that might be relevant, and a list of any medications you are currently taking (including over-the-counter drugs and supplements). This helps our doctors provide the most informed and accurate care.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center mt-5">
+                            <p class="about-content">
+                                Can't find your answer? Our dedicated team is always ready to assist you. Feel free to contact us directly for any further inquiries or specific health-related questions.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+<!-- Medical Dictionary A-Z Section -->
+<section class="section-padding" id="medical-dictionary">
+    <div class="container">
+        <div class="section-title" data-aos="fade-up">
+            <div class="subtitle">Health Encyclopedia</div>
+            <h2 class="royal-font">Medical Dictionary A-Z</h2>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-lg-10" data-aos="fade-up" data-aos-delay="100">
+                <p class="text-center mb-5 about-content">
+                    Explore a comprehensive list of medical conditions, their causes, symptoms, and treatment options. Click on any alphabet to find diseases starting with that letter.
+                </p>
+                <div class="alphabet-grid mb-5">
+                    <!-- Alphabets A-Z -->
+                    <a href="#" class="alphabet-btn" data-letter="A">A</a>
+                    <a href="#" class="alphabet-btn" data-letter="B">B</a>
+                    <a href="#" class="alphabet-btn" data-letter="C">C</a>
+                    <a href="#" class="alphabet-btn" data-letter="D">D</a>
+                    <a href="#" class="alphabet-btn" data-letter="E">E</a>
+                    <a href="#" class="alphabet-btn" data-letter="F">F</a>
+                    <a href="#" class="alphabet-btn" data-letter="G">G</a>
+                    <a href="#" class="alphabet-btn" data-letter="H">H</a>
+                    <a href="#" class="alphabet-btn" data-letter="I">I</a>
+                    <a href="#" class="alphabet-btn" data-letter="J">J</a>
+                    <a href="#" class="alphabet-btn" data-letter="K">K</a>
+                    <a href="#" class="alphabet-btn" data-letter="L">L</a>
+                    <a href="#" class="alphabet-btn" data-letter="M">M</a>
+                    <a href="#" class="alphabet-btn" data-letter="N">N</a>
+                    <a href="#" class="alphabet-btn" data-letter="O">O</a>
+                    <a href="#" class="alphabet-btn" data-letter="P">P</a>
+                    <a href="#" class="alphabet-btn" data-letter="Q">Q</a>
+                    <a href="#" class="alphabet-btn" data-letter="R">R</a>
+                    <a href="#" class="alphabet-btn" data-letter="S">S</a>
+                    <a href="#" class="alphabet-btn" data-letter="T">T</a>
+                    <a href="#" class="alphabet-btn" data-letter="U">U</a>
+                    <a href="#" class="alphabet-btn" data-letter="V">V</a>
+                    <a href="#" class="alphabet-btn" data-letter="W">W</a>
+                    <a href="#" class="alphabet-btn" data-letter="X">X</a>
+                    <a href="#" class="alphabet-btn" data-letter="Y">Y</a>
+                    <a href="#" class="alphabet-btn" data-letter="Z">Z</a>
+                </div>
+
+                <!-- Disease List and Details Container -->
+                <div id="diseaseContent" class="row">
+                    <div class="col-md-5">
+                        <div id="diseaseListContainer" class="disease-list-container">
+                            <h4>Diseases starting with <span id="currentLetter"></span></h4>
+                            <ul id="diseaseList" class="list-unstyled">
+                                <!-- Disease items will be loaded here by JavaScript based on the selected letter -->
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <div id="diseaseDetailsContainer" class="disease-details-container">
+                            <h4>Select a Disease for Details</h4>
+                            <div id="diseaseDetailsContent">
+                                <p class="text-center text-muted">Click on a disease from the list to view its information.</p>
+                                <!-- Disease details will be loaded here dynamically by JavaScript -->
+                            </div>
+                            <p class="disclaimer">
+                                <strong>Disclaimer:</strong> The information provided here is for general knowledge and informational purposes only, and does not constitute medical advice. Please consult a qualified healthcare professional for any health concerns or before making any decisions related to your health or treatment.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <!-- Gallery Section -->
+        <section class="section-padding" id="gallery">
+            <div class="container">
+                <div class="section-title" data-aos="fade-up">
+                    <div class="subtitle">Our Environment</div>
+                    <h2 class="royal-font">A Glimpse of Our Clinic</h2>
+                </div>
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="gallery-item">
+                            <img src="https://images.pexels.com/photos/4033148/pexels-photo-4033148.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Clinic Exterior" loading="lazy">
+                            <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                        <div class="gallery-item">
+                            <img src="https://images.pexels.com/photos/4033149/pexels-photo-4033149.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Waiting Area" loading="lazy">
+                            <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                        <div class="gallery-item">
+                            <img src="https://images.pexels.com/photos/4173251/pexels-photo-4173251.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Reception Desk" loading="lazy">
+                            <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                        <div class="gallery-item">
+                            <img src="https://images.pexels.com/photos/4173239/pexels-photo-4173239.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Consultation Room" loading="lazy">
+                            <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                        <div class="gallery-item">
+                            <img src="https://images.pexels.com/photos/4033177/pexels-photo-4033177.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Medical Equipment" loading="lazy">
+                            <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+                        <div class="gallery-item">
+                            <img src="https://images.pexels.com/photos/4226252/pexels-photo-4226252.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Doctor and Patient" loading="lazy">
+                            <div class="gallery-overlay"><i class="fas fa-search-plus"></i></div>
                         </div>
                     </div>
                 </div>
@@ -1147,12 +1898,13 @@
                     <div class="col-lg-8" data-aos="fade-up" data-aos-delay="100">
                         <div class="appointment-card">
                             <p style="font-size: 1.1rem; text-align: center; margin-bottom: 30px; color: var(--gray);">
-                                Book your appointment easily by calling or messaging us on WhatsApp. Our friendly staff is ready to assist you.
+                                Booking your appointment at CarePlus Medical Clinic is seamless and convenient. You can easily connect with us by calling or sending a message on WhatsApp. Our friendly and efficient staff is always ready to assist you in scheduling a suitable time for your consultation, ensuring minimal waiting and optimal care.
                             </p>
                             <div class="timings">
                                 <h4><i class="far fa-clock me-2"></i>Clinic Timings</h4>
                                 <p><strong>Monday – Saturday</strong></p>
                                 <p style="font-size: 1.3rem; font-weight: 700;">10:00 AM – 8:00 PM</p>
+                                <p>We are closed on Sundays.</p>
                             </div>
                             <div class="text-center mt-4">
                                 <a href="tel:+923184195665" class="btn-primary-custom me-3 mb-3">
@@ -1186,7 +1938,7 @@
                                 <i class="fas fa-star" aria-hidden="true"></i>
                             </div>
                             <p class="review-text">
-                                "Doctors are very professional and the clinic environment is very clean. Highly satisfied with the treatment."
+                                "The doctors at CarePlus are exceptionally professional and knowledgeable, providing thorough diagnoses and clear explanations. The clinic environment is impeccably clean and remarkably welcoming. I am highly satisfied with the personalized treatment and compassionate care I consistently receive here."
                             </p>
                             <div class="reviewer-name">— Ali R.</div>
                         </div>
@@ -1202,7 +1954,7 @@
                                 <i class="fas fa-star" aria-hidden="true"></i>
                             </div>
                             <p class="review-text">
-                                "Quick appointment process and good treatment. The staff was very helpful. Highly recommended!"
+                                "The appointment booking process was impressively quick and entirely hassle-free, making my visit stress-free. The medical treatment provided was excellent, demonstrating true expertise. Furthermore, the entire staff was incredibly helpful and guided me with patience through every step. I highly recommend CarePlus for reliable and efficient healthcare services!"
                             </p>
                             <div class="reviewer-name">— Sana M.</div>
                         </div>
@@ -1218,7 +1970,7 @@
                                 <i class="fas fa-star" aria-hidden="true"></i>
                             </div>
                             <p class="review-text">
-                                "Friendly staff and experienced doctors. I felt well taken care of and all my concerns were addressed."
+                                "I was impressed by the friendly and approachable staff, and the doctors are truly experienced and attentive. I felt incredibly well taken care of throughout my visit, and all my health concerns were addressed thoroughly, empathetically, and with great detail. CarePlus provides a truly caring and professional environment."
                             </p>
                             <div class="reviewer-name">— Usman K.</div>
                         </div>
@@ -1236,7 +1988,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-10" data-aos="fade-up" data-aos-delay="100">
                 <p style="text-align: center; font-size: 1.1rem; color: var(--gray); margin-bottom: 30px;">
-                    CarePlus Medical Clinic is conveniently located near Shehbaz Sharif DHQ Hospital, Multan, ensuring easy access for all our patients and quick appointments.
+                    CarePlus Medical Clinic is conveniently located near Shehbaz Sharif DHQ Hospital, Multan, ensuring easy access for all our patients and quick appointments. Our strategic location aims to serve the community efficiently and provide accessible healthcare solutions to the surrounding areas.
                 </p>
 
                 <!-- Embedded Google Map -->
@@ -1302,59 +2054,159 @@
                 </div>
             </div>
         </section>
+<!-- Medical Contact Form -->
+<!-- To make the form full screen, we'll assume this div is within a 'container-fluid' and 'row' structure.
+     We change 'col-lg-7' to 'col-12' to make it span the full width available from its parent row. -->
+<div class="col-12" data-aos="fade-left">
+    <!-- The form itself will have the dark blue background, padding, and rounded corners. -->
+    <form class="contact-form p-5" style="background-color: #1a2c42; border-radius: 8px;" enctype="multipart/form-data">
 
-        <!-- Developer Section -->
-        <section class="developer-section section-padding">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6" data-aos="fade-right">
-                        <div class="subtitle" style="color: var(--primary); letter-spacing: 3px; font-weight: 600; text-transform: uppercase; margin-bottom: 15px;">Digital Architect</div>
-                        <h2 class="display-5 fw-bold royal-font mb-4">
-                            Developed by <br><span style="color: var(--primary);">Muhammad Umair & Treatment</span>
-                        </h2>
-                        <p class="text-secondary mb-4" style="line-height: 1.8; font-size: 1.1rem;">
-                            This premium digital experience was conceptualized and crafted with excellence by Muhammad Umair. Specializing in professional healthcare solutions, ensuring every pixel reflects care and trust.
-                        </p>
-                    </div>
-                    <div class="col-lg-6" data-aos="fade-left">
-                        <div class="developer-card">
-                            <h4 class="royal-font mb-4" style="color: var(--primary);">Contact Developer</h4>
-                            
-                            <div class="dev-contact-item">
-                                <div class="dev-icon phone">
-                                    <i class="fas fa-phone-alt"></i>
-                                </div>
-                                <div class="dev-info">
-                                    <h6>Umair Amir</h6>
-                                    <p>+92 3049472735</p>
-                                </div>
-                            </div>
+        <!-- Heading with white text -->
+        <h4 class="mb-4 text-center" style="color: white;">Patient Inquiry / Appointment Form</h4>
 
-                            <div class="dev-contact-item">
-                                <div class="dev-icon whatsapp">
-                                    <i class="fab fa-whatsapp"></i>
-                                </div>
-                                <div class="dev-info">
-                                    <h6>Ayesa Malik (WhatsApp)</h6>
-                                    <p>+92 3184195665/p>
-                                </div>
-                            </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label class="form-label" style="color: white;">First Name</label>
+                <input type="text" class="form-control" placeholder="Enter first name" required>
+            </div>
 
-                            <div class="dev-contact-item">
-                                <div class="dev-icon email">
-                                    <i class="fas fa-envelope"></i>
-                                </div>
-                                <div class="dev-info">
-                                    <h6>Email Support</h6>
-                                    <p>muhammadumairamir12@gmail.com</p>
-                                </div>
-                            </div>
+            <div class="col-md-6 mb-3">
+                <label class="form-label" style="color: white;">Last Name</label>
+                <input type="text" class="form-control" placeholder="Enter last name" required>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" style="color: white;">Email Address</label>
+            <input type="email" class="form-control" placeholder="name@example.com" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" style="color: white;">Phone Number</label>
+            <input type="tel" class="form-control" placeholder="+92XXXXXXXXXX" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" style="color: white;">Address</label>
+            <input type="text" class="form-control" placeholder="Enter your full address" required>
+        </div>
+
+        <!-- Advanced Fields for Hospital, Doctor, and Appointment Details -->
+        <div class="mb-3">
+            <label class="form-label" style="color: white;">Hospital / Clinic Name</label>
+            <input type="text" class="form-control" placeholder="e.g. City Hospital, Dr. Ali's Clinic" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" style="color: white;">Department / Specialty</label>
+            <input type="text" class="form-control" placeholder="e.g. Cardiology, Pediatrics, General Medicine" required>
+            <!-- For a real application, this could be a <select> dropdown with predefined options -->
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" style="color: white;">Preferred Doctor Name (Optional)</label>
+            <input type="text" class="form-control" placeholder="e.g. Dr. Ahmed Khan">
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label class="form-label" style="color: white;">Preferred Appointment Date</label>
+                <input type="date" class="form-control" required>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label class="form-label" style="color: white;">Preferred Appointment Time</label>
+                <input type="time" class="form-control" required>
+            </div>
+        </div>
+        <!-- End of New Advanced Fields -->
+
+        <div class="mb-3">
+            <label class="form-label" style="color: white;">Disease / Health Issue</label>
+            <input type="text" class="form-control" placeholder="e.g. Diabetes, Fever, Skin Problem" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" style="color: white;">Treatment Required / Consultation Type</label>
+            <input type="text" class="form-control" placeholder="e.g. General Checkup, Lab Test, Specialist Visit" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" style="color: white;">Previous Medical Reports (Optional)</label>
+            <input type="file" class="form-control" accept=".jpg,.png,.pdf,.doc,.docx">
+        </div>
+
+        <div class="mb-4">
+            <label class="form-label" style="color: white;">Additional Details</label>
+            <textarea class="form-control" rows="4" placeholder="Describe symptoms or medical history (optional)"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary-custom w-100">
+            Submit Medical Inquiry
+        </button>
+
+    </form>
+</div>
+<!-- Developer Section -->
+<section class="developer-section section-padding">
+    <div class="container">
+        <div class="row align-items-center">
+            
+            <div class="col-lg-6" data-aos="fade-right">
+                <div class="subtitle" style="color: var(--accent); letter-spacing: 3px; font-weight: 600; text-transform: uppercase; margin-bottom: 15px;">
+                    Digital Architects
+                </div>
+
+                <h2 class="display-5 fw-bold mb-4">
+                    Developed by <br>
+                    <span style="color: var(--primary);"> Muhammad Umair & Team</span>
+                </h2>
+
+                <p class="mb-4" style="line-height: 1.8; font-size: 1.1rem; color: #CCCCCC;">
+                    This comprehensive digital solution, including this website, was meticulously planned, designed, and developed by Muhammad Umair & Team.
+                    We specialize in creating professional, high-performance websites, innovative mobile applications, and tailored custom software solutions. Our focus remains steadfast on optimizing performance, ensuring clarity, and delivering tangible business results. We are dedicated to providing high-quality, user-friendly, and impactful digital experiences that exceed expectations.
+                </p>
+            </div>
+
+            <div class="col-lg-6" data-aos="fade-left">
+                <div class="developer-card">
+                    <h4 class="mb-4" style="color: var(--primary);">Contact Development Team</h4>
+
+                    <div class="dev-contact-item">
+                        <div class="dev-icon phone">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div class="dev-info">
+                            <h6>Muhammad Umair (Call)</h6>
+                            <p>+92 304 9472735</p>
                         </div>
                     </div>
+
+                    <div class="dev-contact-item">
+                        <div class="dev-icon whatsapp">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="dev-info">
+                            <h6>Team Support, Ayesha Malik (WhatsApp)</h6>
+                            <p>+92 318 4195665</p>
+                        </div>
+                    </div>
+
+                    <div class="dev-contact-item">
+                        <div class="dev-icon email">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="dev-info">
+                            <h6>Email Support</h6>
+                            <p>muhammadumairamir12@gmail.com</p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-        </section>
-    </main>
+
+        </div>
+    </div>
+</section>
 
     <!-- Footer -->
     <footer>
@@ -1365,17 +2217,23 @@
                         <i class="fas fa-heartbeat me-2"></i>CarePlus
                     </h3>
                     <p style="color: rgba(255,255,255,0.7); line-height: 1.8;">
-                        Providing quality healthcare with care and responsibility.
+                        Providing quality healthcare with unwavering care and utmost responsibility, ensuring the holistic well-being and health of every cherished patient.
                     </p>
                 </div>
                 <div class="col-lg-4 mb-4">
                     <h5 class="mb-3" style="color: var(--primary);">Quick Links</h5>
                     <ul class="footer-links">
                         <li><a href="#home">Home</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#doctors">Doctors</a></li>
-                        <li><a href="#appointment">Appointment</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#video-insights">Clinic Insights</a></li>
+                        <li><a href="#doctors">Our Doctors</a></li>
+                        <li><a href="#services">Services Offered</a></li>
+                        <li><a href="#specialties">Medical Specialties</a></li>
+                        <li><a href="#patient-resources">Patient Resources</a></li>
+                        <li><a href="#medical-dictionary">Medical Dictionary</a></li>
+                        <li><a href="#gallery">Our Gallery</a></li>
+                        <li><a href="#appointment">Book Appointment</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-4 mb-4">
@@ -1388,8 +2246,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>⚠️ This is a demo clinic website for presentation purposes only.</p>
-                <p>&copy; <span id="current-year"></span> CarePlus Medical Clinic. All rights reserved. | Developed by Muhammad Umair</p>
+                <p>&copy; <span id="current-year"></span> CarePlus Medical Clinic. All rights reserved. | Developed by Muhammad Umair & Team.Thanks for our vistor and Doctors please send message and get a complete website or software urgent cheap price.</p>
             </div>
         </div>
     </footer>
@@ -1455,6 +2312,412 @@
 
         // Set current year in footer
         document.getElementById('current-year').textContent = new Date().getFullYear();
+
+
+        // Medical Dictionary Logic
+        const diseaseData = {
+            'A': [
+                { id: 'acidity', name: 'Acidity', causes: 'Dietary factors, stress, certain medications.', solution: 'Antacids, lifestyle changes, dietary adjustments.', reference: 'Medical Encyclopedia' },
+                { id: 'acne', name: 'Acne', causes: 'Hormonal changes, excess oil production, bacteria, genetics.', solution: 'Topical creams, antibiotics, skincare routines.', reference: 'Dermatology Journal' },
+                { id: 'allergies', name: 'Allergies', causes: 'Immune system reaction to harmless substances like pollen, dust, food.', solution: 'Antihistamines, avoiding triggers, immunotherapy.', reference: 'Allergy & Immunology Guide' },
+                { id: 'anemia', name: 'Anemia', causes: 'Iron deficiency, vitamin deficiency, chronic disease, blood loss.', solution: 'Supplements (iron, B12), treating underlying cause, dietary changes.', reference: 'Hematology Resource' },
+                { id: 'anxiety', name: 'Anxiety Disorder', causes: 'Genetic factors, brain chemistry, stress, trauma.', solution: 'Therapy (CBT), medication (antidepressants), stress management.', reference: 'Mental Health Association' },
+                { id: 'appendicitis', name: 'Appendicitis', causes: 'Blockage in the appendix, leading to infection and inflammation.', solution: 'Surgical removal of the appendix (appendectomy).', reference: 'Surgical Textbook' },
+                { id: 'arthritis', name: 'Arthritis', causes: 'Joint inflammation, wear and tear (osteoarthritis), autoimmune disease (rheumatoid arthritis).', solution: 'Pain management, physical therapy, medication (NSAIDs, DMARDS), surgery.', reference: 'Rheumatology Guide' },
+                { id: 'asthma', name: 'Asthma', causes: 'Airway inflammation, genetic predisposition, environmental triggers (allergens, pollution).', solution: 'Inhalers (bronchodilators, corticosteroids), trigger avoidance, allergy shots.', reference: 'Pulmonology Guidelines' },
+                { id: 'atherosclerosis', name: 'Atherosclerosis', causes: 'Hardening of arteries due to plaque buildup, high cholesterol, high blood pressure.', solution: 'Lifestyle changes (diet, exercise), medication (statins, antiplatelets), surgery.', reference: 'Cardiology Journal' },
+                { id: 'autism', name: 'Autism Spectrum Disorder', causes: 'Complex genetic and environmental factors affecting brain development.', solution: 'Behavioral therapy, educational interventions, medication for co-occurring conditions.', reference: 'Developmental Pediatrics Resource' }
+            ],
+            'B': [
+                { id: 'backpain', name: 'Back Pain', causes: 'Muscle strain, herniated disc, arthritis, poor posture.', solution: 'Rest, physical therapy, pain relievers, heat/cold therapy.', reference: 'Orthopedics Guide' },
+                { id: 'bronchitis', name: 'Bronchitis', causes: 'Viral infection (acute), smoking or irritants (chronic).', solution: 'Rest, fluids, cough suppressants (acute); smoking cessation, bronchodilators (chronic).', reference: 'Respiratory Health Information' },
+                { id: 'bloodpressure', name: 'Blood Pressure (High)', causes: 'Genetics, diet, lack of exercise, obesity, kidney disease.', solution: 'Lifestyle changes (diet, exercise), medication (diuretics, ACE inhibitors).', reference: 'Cardiology Guidelines' },
+                { id: 'bursitis', name: 'Bursitis', causes: 'Inflammation of bursae due to repetitive motion, injury, or infection.', solution: 'Rest, ice, anti-inflammatory drugs, physical therapy, injections.', reference: 'Sports Medicine Textbook' },
+                { id: 'bipolardisorder', name: 'Bipolar Disorder', causes: 'Genetic factors, brain structure, environmental stressors.', solution: 'Mood stabilizers, psychotherapy, lifestyle management.', reference: 'Psychiatry Resource' },
+                { id: 'bacterial_vaginosis', name: 'Bacterial Vaginosis', causes: 'Imbalance of bacteria in the vagina.', solution: 'Antibiotics (oral or topical).', reference: 'Gynecology Guide' },
+                { id: 'baldness', name: 'Baldness (Androgenetic Alopecia)', causes: 'Genetic predisposition, hormonal factors.', solution: 'Topical medications (minoxidil), oral medications (finasteride), hair transplant.', reference: 'Dermatology & Hair Restoration' },
+                { id: 'bronchiolitis', name: 'Bronchiolitis', causes: 'Viral infection, commonly RSV, affecting small airways in infants.', solution: 'Supportive care, hydration, oxygen therapy (if needed).', reference: 'Pediatric Health Guidelines' },
+                { id: 'botulism', name: 'Botulism', causes: 'Toxin produced by Clostridium botulinum bacteria, often from contaminated food.', solution: 'Antitoxin, supportive care, breathing assistance.', reference: 'Infectious Disease Guide' },
+                { id: 'breast_cancer', name: 'Breast Cancer', causes: 'Genetic mutations, hormonal factors, lifestyle choices, age.', solution: 'Surgery, chemotherapy, radiation, hormone therapy, targeted therapy.', reference: 'Oncology Research' }
+            ],
+            'C': [
+                { id: 'cancer', name: 'Cancer', causes: 'Uncontrolled cell growth due to genetic mutations, carcinogens, viruses.', solution: 'Surgery, chemotherapy, radiation, immunotherapy, targeted therapy.', reference: 'Oncology Institute' },
+                { id: 'cold', name: 'Common Cold', causes: 'Viral infection of nose and throat, commonly rhinovirus.', solution: 'Rest, fluids, symptom relief (decongestants, pain relievers).', reference: 'CDC Health Info' },
+                { id: 'celiac', name: 'Celiac Disease', causes: 'Autoimmune reaction to gluten, damaging small intestine.', solution: 'Strict lifelong gluten-free diet.', reference: 'Gastroenterology Guide' },
+                { id: 'carpal_tunnel', name: 'Carpal Tunnel Syndrome', causes: 'Compression of median nerve in wrist due to repetitive motion, injury.', solution: 'Splinting, anti-inflammatory drugs, physical therapy, surgery.', reference: 'Neurology/Orthopedics' },
+                { id: 'chickenpox', name: 'Chickenpox', causes: 'Varicella-zoster virus, highly contagious.', solution: 'Symptom relief (calamine lotion), antivirals for high-risk, vaccination for prevention.', reference: 'Pediatrics/Infectious Disease' },
+                { id: 'cirrhosis', name: 'Cirrhosis', causes: 'Late-stage liver scarring due to chronic alcohol abuse, hepatitis, fatty liver disease.', solution: 'Treating underlying cause, managing complications, liver transplant.', reference: 'Hepatology Journal' },
+                { id: 'covid19', name: 'COVID-19', causes: 'SARS-CoV-2 virus, transmitted via respiratory droplets.', solution: 'Supportive care, antivirals, anti-inflammatory drugs, vaccination for prevention.', reference: 'WHO/CDC Guidelines' },
+                { id: 'conjunctivitis', name: 'Conjunctivitis (Pink Eye)', causes: 'Viral or bacterial infection, allergies, irritants.', solution: 'Eye drops (antibiotic for bacterial, antihistamine for allergic), warm compresses.', reference: 'Ophthalmology Guide' },
+                { id: 'crohns_disease', name: 'Crohn\'s Disease', causes: 'Chronic inflammatory bowel disease, genetic and immune system factors.', solution: 'Anti-inflammatory drugs, immunosuppressants, biologics, surgery.', reference: 'Gastroenterology Research' },
+                { id: 'cushings_syndrome', name: 'Cushing\'s Syndrome', causes: 'Excess cortisol hormone, often from corticosteroid medication or tumor.', solution: 'Reducing corticosteroid use, surgery for tumors, medication.', reference: 'Endocrinology Textbook' }
+            ],
+            'D': [
+                { id: 'dengue_fever', name: 'Dengue Fever', causes: 'Dengue virus, transmitted by Aedes mosquitoes.', solution: 'Supportive care, hydration, pain relief (avoid NSAIDs).', reference: 'WHO/CDC Dengue Info' },
+                { id: 'diabetes', name: 'Diabetes Mellitus', causes: 'Insufficient insulin production (Type 1) or body\'s inability to use insulin (Type 2).', solution: 'Insulin therapy, oral medications, diet, exercise, blood sugar monitoring.', reference: 'American Diabetes Assoc.' },
+                { id: 'depression', name: 'Depression', causes: 'Brain chemistry imbalance, genetics, stress, trauma, hormonal changes.', solution: 'Psychotherapy, antidepressant medication, lifestyle changes, ECT.', reference: 'National Institute of Mental Health' },
+                { id: 'dementia', name: 'Dementia', causes: 'Brain cell damage due to Alzheimer\'s, vascular disease, Lewy body disease.', solution: 'Symptom management, cognitive stimulation, supportive care.', reference: 'Alzheimer\'s Association' },
+                { id: 'dermatitis', name: 'Dermatitis', causes: 'Skin inflammation due to allergens, irritants, or internal factors (e.g., eczema).', solution: 'Moisturizers, topical corticosteroids, avoiding triggers, antihistamines.', reference: 'Dermatology Resource' },
+                { id: 'dehydration', name: 'Dehydration', causes: 'Insufficient fluid intake, excessive fluid loss (vomiting, diarrhea, sweating).', solution: 'Oral rehydration solutions, intravenous fluids for severe cases.', reference: 'Emergency Medicine Guidelines' },
+                { id: 'diverticulitis', name: 'Diverticulitis', causes: 'Inflammation or infection of pouches (diverticula) in the colon.', solution: 'Antibiotics, liquid diet, pain relief; surgery for severe cases.', reference: 'Gastroenterology Textbook' },
+                { id: 'dysentery', name: 'Dysentery', causes: 'Intestinal infection caused by bacteria (Shigella) or amoebas.', solution: 'Antibiotics (for bacterial), rehydration, supportive care.', reference: 'Tropical Medicine' },
+                { id: 'dyslexia', name: 'Dyslexia', causes: 'Neurodevelopmental disorder, often genetic, affecting reading and language processing.', solution: 'Specialized educational interventions, reading strategies, multi-sensory learning.', reference: 'Learning Disability Support' },
+                { id: 'dizziness', name: 'Dizziness', causes: 'Vertigo, low blood pressure, dehydration, ear problems, medication side effects.', solution: 'Treating underlying cause, anti-vertigo medication, hydration.', reference: 'General Medicine Resource' }
+            ],
+            'E': [
+                { id: 'eczema', name: 'Eczema', causes: 'Genetic predisposition, immune system dysfunction, environmental triggers.', solution: 'Moisturizers, topical corticosteroids, avoiding triggers, phototherapy.', reference: 'National Eczema Association' },
+                { id: 'epilepsy', name: 'Epilepsy', causes: 'Recurrent seizures due to abnormal brain activity, genetic factors, brain injury.', solution: 'Anti-seizure medications, vagus nerve stimulation, ketogenic diet, surgery.', reference: 'Epilepsy Foundation' },
+                { id: 'earinfection', name: 'Ear Infection (Otitis Media)', causes: 'Bacterial or viral infection behind the eardrum, often following a cold.', solution: 'Antibiotics (if bacterial), pain relievers, warm compress, observation.', reference: 'ENT/Pediatric Guidelines' },
+                { id: 'emphysema', name: 'Emphysema', causes: 'Lung damage, primarily due to smoking, leading to shortness of breath.', solution: 'Smoking cessation, bronchodilators, oxygen therapy, pulmonary rehabilitation.', reference: 'American Lung Association' },
+                { id: 'endometriosis', name: 'Endometriosis', causes: 'Uterine tissue growing outside the uterus, causes unknown.', solution: 'Pain relievers, hormone therapy, surgery.', reference: 'Women\'s Health Resource' },
+                { id: 'encephalitis', name: 'Encephalitis', causes: 'Brain inflammation, often caused by viral infection.', solution: 'Antiviral drugs, supportive care, corticosteroids.', reference: 'Infectious Disease Journal' },
+                { id: 'erectile_dysfunction', name: 'Erectile Dysfunction', causes: 'Cardiovascular disease, diabetes, neurological issues, psychological factors, medication.', solution: 'Lifestyle changes, oral medications (PDE5 inhibitors), injections, vacuum devices, implants.', reference: 'Urology & Men\'s Health' },
+                { id: 'eczema_herpeticum', name: 'Eczema Herpeticum', causes: 'Severe widespread herpes simplex virus infection in skin affected by eczema.', solution: 'Antiviral medications (oral or IV), antibiotics for secondary bacterial infection.', reference: 'Dermatology Emergency' },
+                { id: 'edema', name: 'Edema', causes: 'Swelling caused by fluid retention, heart failure, kidney disease, liver disease, certain medications.', solution: 'Diuretics, treating underlying cause, lifestyle changes (elevation, compression stockings).', reference: 'Internal Medicine Resource' },
+                { id: 'esophagitis', name: 'Esophagitis', causes: 'Inflammation of the esophagus, often from acid reflux, allergies, or infection.', solution: 'Antacids, proton pump inhibitors, avoiding irritants, dietary changes.', reference: 'GI Disorders Guide' }
+            ],
+            'F': [
+                { id: 'fever', name: 'Fever', causes: 'Body\'s immune response to infection (bacterial, viral), inflammation, certain medications.', solution: 'Rest, fluids, antipyretics (acetaminophen, ibuprofen), treating underlying cause.', reference: 'General Medicine Guide' },
+                { id: 'fibromyalgia', name: 'Fibromyalgia', causes: 'Chronic widespread pain, fatigue, and tenderness; causes unknown but involves nerve sensitivity.', solution: 'Pain management, exercise, sleep management, antidepressants, cognitive behavioral therapy.', reference: 'Chronic Pain Management' },
+                { id: 'flu', name: 'Flu (Influenza)', causes: 'Influenza virus, highly contagious respiratory infection.', solution: 'Rest, fluids, antiviral medications (oseltamivir), vaccination for prevention.', reference: 'CDC Influenza Info' },
+                { id: 'foodpoisoning', name: 'Food Poisoning', causes: 'Consuming contaminated food with bacteria, viruses, or toxins.', solution: 'Rest, hydration, clear liquids, antibiotics (if bacterial and severe).', reference: 'Gastroenterology Information' },
+                { id: 'fracture', name: 'Fracture (Bone Break)', causes: 'Trauma, falls, high impact, repetitive stress, osteoporosis.', solution: 'Immobilization (cast, splint), pain management, surgery (for complex fractures), physical therapy.', reference: 'Orthopedic Surgery' },
+                { id: 'fattyliver', name: 'Fatty Liver Disease', causes: 'Accumulation of fat in the liver, often linked to obesity, diabetes, alcohol abuse.', solution: 'Lifestyle changes (diet, exercise, weight loss), avoiding alcohol.', reference: 'Hepatology Guidelines' },
+                { id: 'folliculitis', name: 'Folliculitis', causes: 'Inflammation of hair follicles due to bacterial or fungal infection, shaving.', solution: 'Topical antibiotics or antifungals, warm compresses, avoiding irritants.', reference: 'Dermatology Clinic' },
+                { id: 'fissure', name: 'Anal Fissure', causes: 'Tear in the lining of the anus, often from hard stools or straining.', solution: 'Stool softeners, sitz baths, topical creams, dietary fiber, surgery for chronic cases.', reference: 'Colorectal Surgery' },
+                { id: 'foot_fungus', name: 'Foot Fungus (Athlete\'s Foot)', causes: 'Fungal infection, thrives in warm, moist environments (e.g., sweaty feet).', solution: 'Antifungal creams, powders, keeping feet dry and clean.', reference: 'Podiatry & Dermatology' },
+                { id: 'fluid_retention', name: 'Fluid Retention (Edema)', causes: 'Heart failure, kidney disease, liver disease, hormonal changes, prolonged standing.', solution: 'Diuretics, treating underlying cause, elevating affected limbs, compression stockings.', reference: 'Internal Medicine' }
+            ],
+            'G': [
+                { id: 'gastritis', name: 'Gastritis', causes: 'Inflammation of stomach lining due to H. pylori, NSAIDs, alcohol, stress.', solution: 'Antacids, proton pump inhibitors, antibiotics (for H. pylori), avoiding irritants.', reference: 'Gastroenterology Clinic' },
+                { id: 'gastroenteritis', name: 'Gastroenteritis (Stomach Flu)', causes: 'Viral or bacterial infection of the stomach and intestines, food poisoning.', solution: 'Rest, hydration, bland diet, antibiotics (if bacterial and severe).', reference: 'CDC Health Info' },
+                { id: 'gout', name: 'Gout', causes: 'A type of arthritis caused by buildup of uric acid crystals in joints.', solution: 'NSAIDs, corticosteroids, allopurinol (to lower uric acid), dietary changes.', reference: 'Rheumatology Guide' },
+                { id: 'gallstones', name: 'Gallstones', causes: 'Hardened deposits of digestive fluid in the gallbladder, often from high cholesterol or bilirubin.', solution: 'Pain management, dietary changes, medication to dissolve stones, surgery (cholecystectomy).', reference: 'Gastroenterology/Surgery' },
+                { id: 'gingivitis', name: 'Gingivitis', causes: 'Gum inflammation caused by plaque buildup due to poor oral hygiene.', solution: 'Professional dental cleaning, proper brushing and flossing, antiseptic mouthwash.', reference: 'Dental Health Guide' },
+                { id: 'glaucoma', name: 'Glaucoma', causes: 'Group of eye conditions causing optic nerve damage, often due to high eye pressure.', solution: 'Eye drops, oral medications, laser treatment, surgery to lower eye pressure.', reference: 'Ophthalmology Textbook' },
+                { id: 'gonorrhea', name: 'Gonorrhea', causes: 'Sexually transmitted infection caused by Neisseria gonorrhoeae bacteria.', solution: 'Antibiotics; partner treatment is essential.', reference: 'STD/Infectious Disease' },
+                { id: 'gastroesophageal_reflux', name: 'Gastroesophageal Reflux Disease (GERD)', causes: 'Chronic acid reflux due to weakened lower esophageal sphincter.', solution: 'Lifestyle changes (diet, avoiding triggers), antacids, PPIs, H2 blockers, surgery.', reference: 'GI Disorders Guide' },
+                { id: 'graves_disease', name: 'Graves\' Disease', causes: 'Autoimmune disorder causing overactive thyroid (hyperthyroidism).', solution: 'Antithyroid medications, radioactive iodine therapy, surgery.', reference: 'Endocrinology Journal' },
+                { id: 'genital_herpes', name: 'Genital Herpes', causes: 'Sexually transmitted infection caused by herpes simplex virus (HSV).', solution: 'Antiviral medications to manage outbreaks and reduce transmission.', reference: 'STD Information' }
+            ],
+            'H': [
+                { id: 'headache', name: 'Headache', causes: 'Tension, stress, dehydration, sinus issues, migraines, eye strain.', solution: 'Pain relievers (OTC), rest, hydration, stress management, treating underlying cause.', reference: 'General Medicine Resource' },
+                { id: 'heartattack', name: 'Heart Attack (Myocardial Infarction)', causes: 'Blockage of blood flow to the heart muscle, usually from a blood clot.', solution: 'Emergency medical care, aspirin, nitroglycerin, angioplasty, bypass surgery.', reference: 'Cardiology Emergency' },
+                { id: 'hepatitis', name: 'Hepatitis', causes: 'Liver inflammation due to viral infection (A, B, C), alcohol abuse, autoimmune factors.', solution: 'Antiviral drugs (for B, C), avoiding alcohol, supportive care, liver transplant.', reference: 'Hepatology Journal' },
+                { id: 'herpes_simplex', name: 'Herpes Simplex (Cold Sores)', causes: 'Herpes simplex virus type 1 (HSV-1), highly contagious.', solution: 'Antiviral creams or oral medications to reduce outbreaks.', reference: 'Dermatology Guide' },
+                { id: 'hiv', name: 'HIV (Human Immunodeficiency Virus)', causes: 'Human immunodeficiency virus, transmitted through body fluids.', solution: 'Antiretroviral therapy (ART) to manage the virus and prevent AIDS.', reference: 'WHO/CDC HIV Info' },
+                { id: 'hypertension', name: 'Hypertension (High Blood Pressure)', causes: 'Genetics, diet, lack of exercise, obesity, kidney disease.', solution: 'Lifestyle changes (diet, exercise), medication (diuretics, ACE inhibitors).', reference: 'American Heart Association' },
+                { id: 'hypothyroidism', name: 'Hypothyroidism', causes: 'Underactive thyroid gland, often autoimmune (Hashimoto\'s) or iodine deficiency.', solution: 'Thyroid hormone replacement medication (levothyroxine).', reference: 'Endocrinology Textbook' },
+                { id: 'hemorrhoids', name: 'Hemorrhoids', causes: 'Swollen veins in the anus and lower rectum, often from straining during bowel movements.', solution: 'Fiber supplements, stool softeners, topical creams, sitz baths, surgery.', reference: 'Colorectal Health' },
+                { id: 'heartburn', name: 'Heartburn', causes: 'Acid reflux from the stomach into the esophagus, often after meals.', solution: 'Antacids, H2 blockers, PPIs, avoiding trigger foods, lifestyle changes.', reference: 'GI Disorders Guide' },
+                { id: 'hyperglycemia', name: 'Hyperglycemia (High Blood Sugar)', causes: 'Insufficient insulin, consuming too many carbohydrates, stress, illness in diabetics.', solution: 'Insulin, exercise, dietary adjustments, medication.', reference: 'Diabetes Management' }
+            ],
+            'I': [
+                { id: 'infections', name: 'Infections (General)', causes: 'Invasion of body by pathogens (bacteria, viruses, fungi, parasites).', solution: 'Antibiotics (bacterial), antivirals (viral), antifungals (fungal), antiparasitics.', reference: 'Infectious Disease Guide' },
+                { id: 'influenza', name: 'Influenza (Flu)', causes: 'Influenza virus, highly contagious respiratory infection.', solution: 'Rest, fluids, antiviral medications (oseltamivir), vaccination for prevention.', reference: 'CDC Influenza Info' },
+                { id: 'insomnia', name: 'Insomnia', causes: 'Stress, anxiety, poor sleep hygiene, certain medications, underlying medical conditions.', solution: 'Cognitive behavioral therapy for insomnia (CBT-I), sleep hygiene, medication (short-term).', reference: 'Sleep Disorder Clinic' },
+                { id: 'irritablebowel', name: 'Irritable Bowel Syndrome (IBS)', causes: 'Chronic gastrointestinal disorder, altered gut-brain interaction, diet, stress.', solution: 'Dietary changes (FODMAP), stress management, medications (antispasmodics, laxatives, antidiarrheals).', reference: 'Gastroenterology Resource' },
+                { id: 'ingrowntoenail', name: 'Ingrown Toenail', causes: 'Improper nail trimming, tight shoes, foot trauma, genetic predisposition.', solution: 'Soaking feet, lifting nail, surgical removal of part of the nail.', reference: 'Podiatry Advice' },
+                { id: 'impetigo', name: 'Impetigo', causes: 'Highly contagious bacterial skin infection, usually Staphylococcus or Streptococcus.', solution: 'Topical or oral antibiotics.', reference: 'Pediatric Dermatology' },
+                { id: 'indigestion', name: 'Indigestion (Dyspepsia)', causes: 'Overeating, eating too fast, fatty foods, stress, certain medications, GERD.', solution: 'Antacids, H2 blockers, PPIs, dietary changes, stress reduction.', reference: 'GI Disorders Guide' },
+                { id: 'infertility', name: 'Infertility', causes: 'Male factors (sperm issues), female factors (ovulation disorders, blocked fallopian tubes), age.', solution: 'Fertility medications, IVF, IUI, surgery, lifestyle changes.', reference: 'Reproductive Medicine Clinic' },
+                { id: 'iron_deficiency', name: 'Iron Deficiency Anemia', causes: 'Insufficient iron intake, blood loss, poor iron absorption.', solution: 'Iron supplements, dietary changes, treating cause of blood loss.', reference: 'Hematology Guide' },
+                { id: 'ischemic_heart', name: 'Ischemic Heart Disease', causes: 'Narrowing of coronary arteries, usually due to atherosclerosis.', solution: 'Lifestyle changes, medication (statins, antiplatelets), angioplasty, bypass surgery.', reference: 'Cardiology Journal' }
+            ],
+            'J': [
+                { id: 'jaundice', name: 'Jaundice', causes: 'Yellowing of skin/eyes due to bilirubin buildup, liver disease, gallstones, hemolytic anemia.', solution: 'Treating the underlying cause of bilirubin buildup.', reference: 'Hepatology/Internal Medicine' },
+                { id: 'jointpain', name: 'Joint Pain', causes: 'Arthritis, injury, overuse, bursitis, tendinitis, infections.', solution: 'Rest, ice/heat, pain relievers, physical therapy, treating underlying cause.', reference: 'Orthopedics/Rheumatology' },
+                { id: 'jumperknee', name: 'Jumper\'s Knee (Patellar Tendinitis)', causes: 'Inflammation of the patellar tendon due to repetitive stress (jumping, running).', solution: 'Rest, ice, physical therapy, NSAIDs, eccentric exercises.', reference: 'Sports Medicine Clinic' },
+                { id: 'juvenile_arthritis', name: 'Juvenile Idiopathic Arthritis (JIA)', causes: 'Autoimmune inflammatory joint disease in children, exact cause unknown.', solution: 'NSAIDs, DMARDS, biologics, physical therapy, regular eye exams.', reference: 'Pediatric Rheumatology' },
+                { id: 'jetlag', name: 'Jet Lag', causes: 'Disruption of circadian rhythm due to rapid travel across time zones.', solution: 'Gradual adjustment of sleep schedule, light exposure, melatonin, hydration.', reference: 'Travel Health Advice' },
+                { id: 'jockitch', name: 'Jock Itch (Tinea Cruris)', causes: 'Fungal infection in the groin area, thrives in warm, moist conditions.', solution: 'Antifungal creams/powders, keeping area dry and clean.', reference: 'Dermatology Clinic' },
+                { id: 'jawpain', name: 'Jaw Pain (TMJ Disorder)', causes: 'Problems with temporomandibular joint (TMJ), teeth grinding, stress, arthritis.', solution: 'Pain relievers, heat/cold, soft diet, bite guard, stress management, physical therapy.', reference: 'Oral & Maxillofacial Surgery' },
+                { id: 'kidneystones', name: 'Kidney Stones', causes: 'Hard deposits of minerals and salts that form in the kidneys.', solution: 'Pain relief, fluids, medication to help pass stones, lithotripsy, surgery.', reference: 'Urology Guide' },
+                { id: 'keratitis', name: 'Keratitis', causes: 'Inflammation of the cornea, often due to infection (bacterial, viral, fungal).', solution: 'Antibiotic, antiviral, or antifungal eye drops, treating underlying cause.', reference: 'Ophthalmology Textbook' },
+                { id: 'kolik', name: 'Infant Colic', causes: 'Prolonged, unexplained crying in healthy infants, exact cause unknown.', solution: 'Soothing techniques, dietary changes for breastfeeding mother or formula, probiotic drops.', reference: 'Pediatric Health' }
+            ],
+            'K': [
+                { id: 'kidneystones_k', name: 'Kidney Stones', causes: 'Hard deposits of minerals and salts that form in the kidneys.', solution: 'Pain relief, fluids, medication to help pass stones, lithotripsy, surgery.', reference: 'Urology Guide' },
+                { id: 'keratitis_k', name: 'Keratitis', causes: 'Inflammation of the cornea, often due to infection (bacterial, viral, fungal).', solution: 'Antibiotic, antiviral, or antifungal eye drops, treating underlying cause.', reference: 'Ophthalmology Textbook' },
+                { id: 'ketoacidosis', name: 'Diabetic Ketoacidosis (DKA)', causes: 'Severe complication of diabetes due to insufficient insulin, leading to high ketones and blood sugar.', solution: 'Emergency medical care, intravenous fluids, insulin, electrolyte replacement.', reference: 'Diabetes Emergency Guidelines' },
+                { id: 'kawasakidisease', name: 'Kawasaki Disease', causes: 'Rare childhood illness causing inflammation in blood vessel walls, unknown cause.', solution: 'Intravenous immunoglobulin (IVIG), aspirin.', reference: 'Pediatric Cardiology' },
+                { id: 'keloids', name: 'Keloids', causes: 'Raised scars that grow larger than the original wound, due to excess collagen production.', solution: 'Steroid injections, laser therapy, cryotherapy, surgical removal, silicone sheets.', reference: 'Dermatology & Scar Management' },
+                { id: 'kinesiotape_injury', name: 'Kinesiotape Related Skin Injury', causes: 'Skin irritation, blistering, or tearing from improper application or removal of kinesiology tape.', solution: 'Remove tape carefully, clean and dress wound, allow skin to heal, avoid further irritation.', reference: 'Sports Therapy Guidelines' },
+                { id: 'kleptomania', name: 'Kleptomania', causes: 'Impulse control disorder characterized by an inability to resist urges to steal objects.', solution: 'Psychotherapy (CBT), medication (antidepressants).', reference: 'Psychiatry Resource' },
+                { id: 'kyphosis', name: 'Kyphosis', causes: 'Excessive outward curvature of the spine, often due to poor posture, vertebral fractures, or developmental issues.', solution: 'Physical therapy, braces, pain management, surgery for severe cases.', reference: 'Spinal Health & Orthopedics' },
+                { id: 'kaposissarcoma', name: 'Kaposi\'s Sarcoma', causes: 'Cancer that causes lesions on skin, lymph nodes, organs; linked to human herpesvirus 8 (HHV-8), common in immunocompromised.', solution: 'Antiretroviral therapy (for HIV-related), chemotherapy, radiation therapy, cryotherapy.', reference: 'Oncology & Infectious Disease' },
+                { id: 'kernicterus', name: 'Kernicterus', causes: 'Rare type of brain damage that occurs in newborns with severe untreated jaundice.', solution: 'Phototherapy, exchange transfusion for severe cases, prevention of severe jaundice.', reference: 'Neonatal Pediatrics' }
+            ],
+            'L': [
+                { id: 'laryngitis', name: 'Laryngitis', causes: 'Inflammation of the voice box, usually from viral infection, voice overuse, or irritants.', solution: 'Voice rest, hydration, humidifiers, treating underlying cause.', reference: 'ENT Health Info' },
+                { id: 'leukemia', name: 'Leukemia', causes: 'Cancer of blood-forming tissues, affecting white blood cells; genetic and environmental factors.', solution: 'Chemotherapy, radiation therapy, stem cell transplant, targeted therapy.', reference: 'Oncology Research' },
+                { id: 'lupus', name: 'Lupus (Systemic Lupus Erythematosus - SLE)', causes: 'Chronic autoimmune disease, attacking various tissues and organs; genetic and environmental triggers.', solution: 'NSAIDs, corticosteroids, immunosuppressants, antimalarials, biologics.', reference: 'Rheumatology Journal' },
+                { id: 'lymedisease', name: 'Lyme Disease', causes: 'Bacterial infection transmitted by tick bites (Borrelia burgdorferi).', solution: 'Antibiotics (doxycycline, amoxicillin), early treatment is crucial.', reference: 'Infectious Disease CDC' },
+                { id: 'lowbloodpressure', name: 'Low Blood Pressure (Hypotension)', causes: 'Dehydration, heart conditions, endocrine problems, severe infection, medication side effects.', solution: 'Increasing fluid intake, dietary salt, medication, treating underlying cause.', reference: 'Cardiology Guide' },
+                { id: 'lowbloodsugar', name: 'Low Blood Sugar (Hypoglycemia)', causes: 'Excessive insulin, skipped meals, intense exercise in diabetics; other medical conditions.', solution: 'Consuming fast-acting carbohydrates (juice, candy), glucagon injection.', reference: 'Diabetes Management' },
+                { id: 'liverfailure', name: 'Liver Failure', causes: 'Severe damage to the liver from chronic hepatitis, alcohol abuse, drug overdose, autoimmune diseases.', solution: 'Treating underlying cause, supportive care, liver transplant.', reference: 'Hepatology & Critical Care' },
+                { id: 'legcramps', name: 'Leg Cramps', causes: 'Muscle fatigue, dehydration, electrolyte imbalance, nerve compression, certain medications.', solution: 'Stretching, massage, hydration, electrolyte replacement, identifying triggers.', reference: 'Physical Therapy Advice' },
+                { id: 'lichenplanus', name: 'Lichen Planus', causes: 'Inflammatory condition affecting skin, hair, nails, and mucous membranes; autoimmune suspected.', solution: 'Topical corticosteroids, oral corticosteroids, antihistamines, light therapy.', reference: 'Dermatology Clinic' },
+                { id: 'lipoma', name: 'Lipoma', causes: 'Benign fatty tumor that grows slowly under the skin, cause unknown.', solution: 'Usually no treatment needed, surgical removal if bothersome or growing.', reference: 'General Surgery' }
+            ],
+            'M': [
+                { id: 'migraine', name: 'Migraine', causes: 'Severe headache with throbbing pain, often with aura, sensitivity to light/sound; genetic and environmental triggers.', solution: 'Pain relievers (NSAIDs, triptans), anti-nausea meds, preventative medications, avoiding triggers.', reference: 'Neurology Clinic' },
+                { id: 'malaria', name: 'Malaria', causes: 'Parasitic infection transmitted by Anopheles mosquitoes (Plasmodium parasite).', solution: 'Antimalarial drugs, prevention through mosquito control and prophylaxis.', reference: 'WHO/CDC Malaria Info' },
+                { id: 'measles', name: 'Measles', causes: 'Highly contagious viral infection, transmitted via respiratory droplets.', solution: 'Supportive care, vitamin A, vaccination for prevention.', reference: 'CDC/WHO Measles Info' },
+                { id: 'meningitis', name: 'Meningitis', causes: 'Inflammation of membranes surrounding brain and spinal cord, bacterial or viral infection.', solution: 'Antibiotics (bacterial), antiviral drugs (viral), supportive care, vaccination for prevention.', reference: 'Infectious Disease Textbook' },
+                { id: 'mononucleosis', name: 'Mononucleosis (Mono)', causes: 'Viral infection, usually Epstein-Barr virus (EBV), spread through saliva.', solution: 'Rest, fluids, pain relievers, avoiding strenuous activity.', reference: 'CDC Mono Info' },
+                { id: 'mumps', name: 'Mumps', causes: 'Viral infection, highly contagious, causing swollen salivary glands.', solution: 'Supportive care, pain relief, vaccination for prevention (MMR).', reference: 'CDC/WHO Mumps Info' },
+                { id: 'multiple_sclerosis', name: 'Multiple Sclerosis (MS)', causes: 'Autoimmune disease attacking myelin sheath, affecting brain and spinal cord; genetic and environmental factors.', solution: 'Disease-modifying therapies (DMTs), corticosteroids for flares, symptom management, physical therapy.', reference: 'Neurology Research' },
+                { id: 'myocarditis', name: 'Myocarditis', causes: 'Inflammation of the heart muscle, often from viral infection, autoimmune disease, or drug reaction.', solution: 'Treating underlying cause, anti-inflammatory drugs, supportive care for heart function.', reference: 'Cardiology Journal' },
+                { id: 'melanoma', name: 'Melanoma', causes: 'Serious type of skin cancer, often due to UV radiation exposure and genetics, originating from melanocytes.', solution: 'Surgical removal, chemotherapy, radiation, targeted therapy, immunotherapy.', reference: 'Dermatology/Oncology' },
+                { id: 'meniscus_tear', name: 'Meniscus Tear', causes: 'Injury to the cartilage in the knee, often from twisting or direct trauma.', solution: 'RICE (Rest, Ice, Compression, Elevation), physical therapy, surgery (arthroscopy).', reference: 'Orthopedic Surgery' }
+            ],
+            'N': [
+                { id: 'nausea', name: 'Nausea', causes: 'Motion sickness, food poisoning, pregnancy, migraines, infections, medication side effects.', solution: 'Anti-emetic medication, bland diet, hydration, rest, avoiding triggers.', reference: 'General Medicine Resource' },
+                { id: 'nephritis', name: 'Nephritis', causes: 'Inflammation of the kidneys, various causes including infection, autoimmune disease, toxins.', solution: 'Treating underlying cause, corticosteroids, immunosuppressants, blood pressure control.', reference: 'Nephrology Textbook' },
+                { id: 'neuralgia', name: 'Neuralgia', causes: 'Severe nerve pain due to nerve damage, compression, or inflammation (e.g., trigeminal neuralgia, postherpetic neuralgia).', solution: 'Pain medications (anticonvulsants, antidepressants), nerve blocks, surgery for compression.', reference: 'Neurology Clinic' },
+                { id: 'neuropathy', name: 'Neuropathy (Peripheral Neuropathy)', causes: 'Nerve damage outside brain/spinal cord, often from diabetes, injury, infection, toxins, autoimmune disease.', solution: 'Treating underlying cause, pain management (medications), physical therapy, lifestyle changes.', reference: 'Neurology Journal' },
+                { id: 'nosebleed', name: 'Nosebleed (Epistaxis)', causes: 'Dry air, nose picking, trauma, high blood pressure, certain medications.', solution: 'Pinch nose, lean forward, cold compress; cauterization or packing for severe cases.', reference: 'ENT Advice' },
+                { id: 'narcolepsy', name: 'Narcolepsy', causes: 'Chronic neurological condition causing overwhelming daytime sleepiness, often due to lack of hypocretin.', solution: 'Stimulants, antidepressants, scheduled naps, lifestyle modifications.', reference: 'Sleep Disorder Clinic' },
+                { id: 'nephrotic_syndrome', name: 'Nephrotic Syndrome', causes: 'Kidney disorder causing body to excrete too much protein in urine, due to kidney damage.', solution: 'Treating underlying cause, ACE inhibitors, diuretics, corticosteroids, dietary changes.', reference: 'Nephrology Textbook' },
+                { id: 'night_sweats', name: 'Night Sweats', causes: 'Hormonal changes (menopause), infections, certain medications, anxiety, sleep apnea.', solution: 'Addressing underlying cause, managing room temperature, comfortable sleepwear.', reference: 'Internal Medicine Resource' },
+                { id: 'nonhodgkins_lymphoma', name: 'Non-Hodgkin\'s Lymphoma', causes: 'Cancer originating in white blood cells (lymphocytes), cause often unknown.', solution: 'Chemotherapy, radiation, immunotherapy, targeted therapy, stem cell transplant.', reference: 'Oncology Journal' },
+                { id: 'necrotizing_fasciitis', name: 'Necrotizing Fasciitis', causes: 'Rare but severe bacterial infection that spreads quickly and destroys tissue.', solution: 'Emergency surgery, broad-spectrum antibiotics, intensive care.', reference: 'Infectious Disease Emergency' }
+            ],
+            'O': [
+                { id: 'obesity', name: 'Obesity', causes: 'Excessive body fat accumulation due to genetics, diet, lack of exercise, hormonal factors.', solution: 'Dietary changes, regular exercise, behavioral therapy, medication, bariatric surgery.', reference: 'Endocrine/Metabolic Health' },
+                { id: 'osteoporosis', name: 'Osteoporosis', causes: 'Weak and brittle bones due to bone density loss, age, hormonal changes, low calcium/vitamin D.', solution: 'Calcium/Vitamin D supplements, bisphosphonates, exercise, fall prevention.', reference: 'Bone Health Foundation' },
+                { id: 'osteoarthritis', name: 'Osteoarthritis (OA)', causes: 'Degenerative joint disease due to wear and tear of cartilage, age, injury, obesity.', solution: 'Pain relievers, physical therapy, exercise, weight management, joint injections, surgery.', reference: 'Rheumatology/Orthopedics' },
+                { id: 'otitis_media', name: 'Otitis Media (Middle Ear Infection)', causes: 'Bacterial or viral infection behind the eardrum, often following a cold.', solution: 'Antibiotics (if bacterial), pain relievers, warm compress, observation.', reference: 'ENT/Pediatric Guidelines' },
+                { id: 'ovariancancer', name: 'Ovarian Cancer', causes: 'Cancer that begins in the ovaries; genetic factors, age, reproductive history.', solution: 'Surgery, chemotherapy, targeted therapy.', reference: 'Oncology Research' },
+                { id: 'obstructive_sleep_apnea', name: 'Obstructive Sleep Apnea (OSA)', causes: 'Repeated collapse of upper airway during sleep, leading to breathing pauses; obesity, large tonsils.', solution: 'CPAP machine, oral appliances, lifestyle changes (weight loss), surgery.', reference: 'Sleep Medicine Clinic' },
+                { id: 'osteomyelitis', name: 'Osteomyelitis', causes: 'Bone infection, usually bacterial, spread through bloodstream or direct contamination.', solution: 'Long-term antibiotics, surgical debridement of infected bone.', reference: 'Infectious Disease/Orthopedics' },
+                { id: 'onychomycosis', name: 'Onychomycosis (Nail Fungus)', causes: 'Fungal infection of the nails, often from warm, moist environments.', solution: 'Antifungal oral medications, topical solutions, laser therapy, nail removal.', reference: 'Dermatology/Podiatry' },
+                { id: 'orbital_cellulitis', name: 'Orbital Cellulitis', causes: 'Serious bacterial infection of the tissues surrounding the eye, often from sinus infection.', solution: 'Intravenous antibiotics, surgical drainage if abscess present.', reference: 'Ophthalmology Emergency' },
+                { id: 'oral_thrush', name: 'Oral Thrush (Candidiasis)', causes: 'Fungal infection in the mouth caused by Candida albicans, common in infants, elderly, immunocompromised.', solution: 'Antifungal medications (oral or topical mouthwash), good oral hygiene.', reference: 'Oral Medicine/Pediatrics' }
+            ],
+            'P': [
+                { id: 'pneumonia', name: 'Pneumonia', causes: 'Lung infection (bacterial, viral, fungal), often following a cold or flu.', solution: 'Antibiotics (bacterial), antivirals (viral), antifungals (fungal), oxygen therapy.', reference: 'Pulmonology Guidelines' },
+                { id: 'psoriasis', name: 'Psoriasis', causes: 'Chronic autoimmune skin condition causing rapid skin cell turnover, forming scales and red patches.', solution: 'Topical corticosteroids, phototherapy, oral medications (methotrexate, biologics), lifestyle changes.', reference: 'Dermatology Journal' },
+                { id: 'parkinsons', name: 'Parkinson\'s Disease', causes: 'Progressive neurological disorder affecting movement, loss of dopamine-producing neurons.', solution: 'Medications (levodopa), deep brain stimulation, physical therapy, exercise.', reference: 'Neurology Research' },
+                { id: 'pancreatitis', name: 'Pancreatitis', causes: 'Inflammation of the pancreas, often due to gallstones or alcohol abuse.', solution: 'Hospitalization, intravenous fluids, pain management, bowel rest, treating underlying cause.', reference: 'Gastroenterology Textbook' },
+                { id: 'pepticulcer', name: 'Peptic Ulcer', causes: 'Sore in stomach lining or small intestine, often from H. pylori infection or NSAID use.', solution: 'Antibiotics (for H. pylori), proton pump inhibitors, H2 blockers, avoiding irritants.', reference: 'GI Disorders Guide' },
+                { id: 'polycystic_ovary', name: 'Polycystic Ovary Syndrome (PCOS)', causes: 'Hormonal disorder in women, leading to irregular periods, excess androgen, ovarian cysts; genetic factors.', solution: 'Lifestyle changes (diet, exercise, weight loss), birth control pills, medication to induce ovulation.', reference: 'Women\'s Health & Endocrinology' },
+                { id: 'pharyngitis', name: 'Pharyngitis (Sore Throat)', causes: 'Inflammation of the pharynx, commonly viral (cold) or bacterial (strep throat).', solution: 'Rest, fluids, pain relievers, gargling salt water; antibiotics for strep throat.', reference: 'ENT/General Medicine' },
+                { id: 'plantar_fasciitis', name: 'Plantar Fasciitis', causes: 'Inflammation of tissue on bottom of foot, often from overuse, improper footwear, obesity.', solution: 'Rest, ice, stretching, physical therapy, orthotics, NSAIDs.', reference: 'Podiatry & Sports Medicine' },
+                { id: 'pneumothorax', name: 'Pneumothorax (Collapsed Lung)', causes: 'Air leaking into space between lung and chest wall, often from injury, lung disease, or spontaneously.', solution: 'Observation, needle aspiration, chest tube insertion, surgery.', reference: 'Pulmonology Emergency' },
+                { id: 'premenstrual_syndrome', name: 'Premenstrual Syndrome (PMS)', causes: 'Physical and emotional symptoms before menstruation, hormonal fluctuations.', solution: 'Lifestyle changes (diet, exercise, stress reduction), OTC pain relievers, birth control pills, antidepressants.', reference: 'Women\'s Health Resource' }
+            ],
+            'Q': [
+                { id: 'quinsy', name: 'Quinsy (Peritonsillar Abscess)', causes: 'Pus-filled pocket next to tonsil, complication of tonsillitis (bacterial infection).', solution: 'Antibiotics, surgical drainage of abscess.', reference: 'ENT Emergency' },
+                { id: 'qfever', name: 'Q Fever', causes: 'Bacterial infection caused by Coxiella burnetii, typically from contact with infected animals.', solution: 'Antibiotics (doxycycline), supportive care.', reference: 'Infectious Disease CDC' },
+                { id: 'quadriceps_strain', name: 'Quadriceps Strain', causes: 'Tear in the quadriceps muscle, often from sudden contraction or overstretching.', solution: 'RICE (Rest, Ice, Compression, Elevation), pain relievers, physical therapy.', reference: 'Sports Injury Clinic' },
+                { id: 'qigong_injury', name: 'Qigong-Related Injury', causes: 'Musculoskeletal strains, psychological distress, or exacerbation of existing conditions from improper Qigong practice.', solution: 'Rest, appropriate medical evaluation, modifying or stopping practice, seeking qualified instructors.', reference: 'Alternative Medicine Safety' },
+                { id: 'queryfever', name: 'Query Fever (Dengue Fever)', causes: 'Dengue virus, transmitted by Aedes mosquitoes.', solution: 'Supportive care, hydration, pain relief (avoid NSAIDs).', reference: 'WHO/CDC Dengue Info' },
+                { id: 'quinidine_toxicity', name: 'Quinidine Toxicity', causes: 'Adverse effects from too much quinidine, an antiarrhythmic drug.', solution: 'Discontinue drug, supportive care, activated charcoal, managing arrhythmias.', reference: 'Pharmacology Textbook' },
+                { id: 'quadriplegia', name: 'Quadriplegia (Tetraplegia)', causes: 'Paralysis affecting all four limbs, usually due to spinal cord injury in the cervical region.', solution: 'Emergency stabilization, intensive physical and occupational therapy, assistive devices, ongoing medical management.', reference: 'Spinal Cord Injury Rehab' },
+                { id: 'quilting_tendonitis', name: 'Quilting Tendonitis', causes: 'Repetitive strain injury, often affecting wrists or shoulders, from sustained quilting activities.', solution: 'Rest, ice, NSAIDs, ergonomic adjustments, modifying technique, physical therapy.', reference: 'Occupational Therapy' },
+                { id: 'quickening_disorder', name: 'Quickening Disorder (Fetal Movement Issues)', causes: 'Variations in perceived fetal movements, can be due to placental issues, fetal distress, or maternal factors.', solution: 'Fetal monitoring, ultrasound, further medical evaluation depending on cause.', reference: 'Obstetrics & Gynecology' },
+                { id: 'quincysorethroat', name: 'Quincy Sore Throat (Peritonsillar Abscess)', causes: 'Pus-filled pocket next to tonsil, complication of tonsillitis (bacterial infection).', solution: 'Antibiotics, surgical drainage of abscess.', reference: 'ENT Emergency' }
+            ],
+            'R': [
+                { id: 'rash', name: 'Rash', causes: 'Skin inflammation due to allergies, infections, irritants, autoimmune conditions.', solution: 'Topical creams (corticosteroids, antihistamines), avoiding irritants, treating underlying cause.', reference: 'Dermatology Guide' },
+                { id: 'rheumatoidarthritis', name: 'Rheumatoid Arthritis (RA)', causes: 'Chronic autoimmune disease causing joint inflammation, pain, swelling, and damage.', solution: 'DMARDS, biologics, NSAIDs, corticosteroids, physical therapy, joint replacement.', reference: 'Rheumatology Journal' },
+                { id: 'reflux', name: 'Acid Reflux (GERD)', causes: 'Stomach acid flowing back into esophagus due to weak lower esophageal sphincter.', solution: 'Antacids, PPIs, H2 blockers, lifestyle changes (diet, avoiding triggers), surgery.', reference: 'GI Disorders Guide' },
+                { id: 'rosacea', name: 'Rosacea', causes: 'Chronic skin condition causing facial redness, visible blood vessels, bumps, and pustules; causes unknown.', solution: 'Topical medications, oral antibiotics, laser therapy, avoiding triggers (spicy food, alcohol).', reference: 'Dermatology Clinic' },
+                { id: 'rotavirus', name: 'Rotavirus Infection', causes: 'Highly contagious viral infection causing severe diarrhea and vomiting, especially in young children.', solution: 'Hydration (oral rehydration solutions), supportive care, vaccination for prevention.', reference: 'CDC/WHO Pediatrics' },
+                { id: 'ruptured_appendix', name: 'Ruptured Appendix', causes: 'Untreated appendicitis leading to the appendix bursting, spreading infection.', solution: 'Emergency surgery to remove appendix and clean abdominal cavity, antibiotics.', reference: 'Surgical Emergency' },
+                { id: 'raynauds_phenomenon', name: 'Raynaud\'s Phenomenon', causes: 'Spasms of small arteries, often in fingers/toes, triggered by cold or stress, leading to color changes.', solution: 'Avoiding triggers, keeping warm, medication to dilate blood vessels.', reference: 'Vascular Medicine' },
+                { id: 'restless_leg', name: 'Restless Legs Syndrome (RLS)', causes: 'Neurological disorder causing uncontrollable urge to move legs, especially at rest; genetic factors, iron deficiency.', solution: 'Lifestyle changes (exercise, avoiding caffeine), iron supplements, dopamine agonists, anticonvulsants.', reference: 'Neurology/Sleep Disorders' },
+                { id: 'renal_failure', name: 'Renal Failure (Kidney Failure)', causes: 'Kidneys lose ability to remove waste/balance fluids, chronic diseases (diabetes, hypertension), injury.', solution: 'Dialysis, kidney transplant, medication, dietary changes, treating underlying cause.', reference: 'Nephrology Textbook' },
+                { id: 'ringworm', name: 'Ringworm (Tinea Corporis)', causes: 'Fungal skin infection, highly contagious, forms a circular rash.', solution: 'Antifungal creams or oral medications, keeping skin clean and dry.', reference: 'Dermatology Clinic' }
+            ],
+            'S': [
+                { id: 'strepthroat', name: 'Strep Throat', causes: 'Bacterial infection caused by Streptococcus pyogenes, highly contagious.', solution: 'Antibiotics (penicillin, amoxicillin) to prevent complications, pain relief, rest.', reference: 'Pediatric/Infectious Disease' },
+                { id: 'stroke', name: 'Stroke', causes: 'Interruption of blood supply to the brain (ischemic) or bleeding in the brain (hemorrhagic).', solution: 'Emergency medical care, clot-busting drugs (for ischemic), surgery, rehabilitation.', reference: 'Neurology Emergency' },
+                { id: 'scabies', name: 'Scabies', causes: 'Itchy skin condition caused by tiny mites burrowing into the skin, highly contagious.', solution: 'Scabicidal creams or oral medications, treating all close contacts, washing linens.', reference: 'Dermatology/Infectious Disease' },
+                { id: 'shingles', name: 'Shingles (Herpes Zoster)', causes: 'Reactivation of varicella-zoster virus (chickenpox virus) in nerves.', solution: 'Antiviral medications, pain relievers, vaccination for prevention.', reference: 'Infectious Disease Guide' },
+                { id: 'sinusitis', name: 'Sinusitis', causes: 'Inflammation of the sinuses, usually viral, bacterial, or allergic.', solution: 'Nasal corticosteroids, decongestants, antibiotics (bacterial), warm compresses.', reference: 'ENT Health Info' },
+                { id: 'sleepapnea', name: 'Sleep Apnea', causes: 'Breathing repeatedly stops and starts during sleep, often due to airway obstruction (OSA) or brain signal issues (CSA).', solution: 'CPAP machine, oral appliances, lifestyle changes (weight loss), surgery.', reference: 'Sleep Medicine Clinic' },
+                { id: 'sprain', name: 'Sprain', causes: 'Stretching or tearing of ligaments, often from sudden twisting or impact.', solution: 'RICE (Rest, Ice, Compression, Elevation), pain relievers, physical therapy.', reference: 'Sports Injury Clinic' },
+                { id: 'stomachache', name: 'Stomach Ache', causes: 'Indigestion, gas, constipation, stomach flu, food poisoning, IBS.', solution: 'Antacids, pain relievers, hydration, bland diet, treating underlying cause.', reference: 'General Medicine Resource' },
+                { id: 'stress', name: 'Stress (Chronic)', causes: 'Prolonged exposure to demanding situations, psychological pressures, financial strain, relationship issues.', solution: 'Stress management techniques (mindfulness, meditation), exercise, therapy, lifestyle changes.', reference: 'Mental Health & Wellness' },
+                { id: 'sunburn', name: 'Sunburn', causes: 'Skin damage caused by overexposure to ultraviolet (UV) radiation from the sun or tanning beds.', solution: 'Cool baths, moisturizers (aloe vera), pain relievers, staying hydrated, avoiding further sun exposure.', reference: 'Dermatology Advice' }
+            ],
+            'T': [
+                { id: 'tonsillitis', name: 'Tonsillitis', causes: 'Inflammation of the tonsils, usually viral (common cold) or bacterial (strep throat).', solution: 'Rest, fluids, pain relievers, antibiotics (bacterial), tonsillectomy (recurrent cases).', reference: 'ENT/Pediatric Guidelines' },
+                { id: 'tuberculosis', name: 'Tuberculosis (TB)', causes: 'Bacterial infection caused by Mycobacterium tuberculosis, primarily affecting lungs, spread airborne.', solution: 'Long course of antibiotics, directly observed therapy (DOT) for adherence.', reference: 'WHO/CDC TB Info' },
+                { id: 'typhoid_fever', name: 'Typhoid Fever', causes: 'Bacterial infection caused by Salmonella Typhi, spread through contaminated food/water.', solution: 'Antibiotics, supportive care, hydration, vaccination for prevention.', reference: 'Infectious Disease Journal' },
+                { id: 'tendinitis', name: 'Tendinitis', causes: 'Inflammation of a tendon, usually from overuse, injury, or repetitive motion.', solution: 'RICE (Rest, Ice, Compression, Elevation), pain relievers, physical therapy, injections.', reference: 'Sports Medicine Clinic' },
+                { id: 'thyroid_disorders', name: 'Thyroid Disorders', causes: 'Imbalance in thyroid hormones (hypothyroidism, hyperthyroidism), autoimmune disease, iodine deficiency.', solution: 'Hormone replacement (hypothyroidism), antithyroid drugs, radioactive iodine, surgery (hyperthyroidism).', reference: 'Endocrinology Textbook' },
+                { id: 'tinea', name: 'Tinea (Fungal Skin Infections)', causes: 'Fungal infection affecting skin, hair, or nails (e.g., ringworm, athlete\'s foot, jock itch).', solution: 'Antifungal creams, powders, or oral medications, maintaining hygiene.', reference: 'Dermatology Clinic' },
+                { id: 'toothache', name: 'Toothache', causes: 'Tooth decay, gum disease, abscess, cracked tooth, sinus infection.', solution: 'Dental check-up, pain relievers, antibiotics, root canal, extraction.', reference: 'Dental Health Guide' },
+                { id: 'trigeminal_neuralgia', name: 'Trigeminal Neuralgia', causes: 'Chronic pain condition affecting trigeminal nerve, often due to nerve compression or damage.', solution: 'Anticonvulsant medications, nerve blocks, surgery.', reference: 'Neurology Clinic' },
+                { id: 'tinnitus', name: 'Tinnitus', causes: 'Ringing or buzzing in the ears, often related to hearing loss, noise exposure, earwax blockage, medication.', solution: 'Treating underlying cause, sound therapy, cognitive behavioral therapy, masking devices.', reference: 'ENT Health Info' },
+                { id: 'travelers_diarrhea', name: 'Traveler\'s Diarrhea', causes: 'Bacterial infection from consuming contaminated food or water during travel.', solution: 'Hydration, antidiarrheal medication, antibiotics (if severe), preventive measures (safe food/water).', reference: 'Travel Health Advice' }
+            ],
+            'U': [
+                { id: 'ulcer', name: 'Ulcer (Peptic Ulcer)', causes: 'Sore in stomach lining or small intestine, often from H. pylori infection or NSAID use.', solution: 'Antibiotics (for H. pylori), proton pump inhibitors, H2 blockers, avoiding irritants.', reference: 'GI Disorders Guide' },
+                { id: 'urinary_tract', name: 'Urinary Tract Infection (UTI)', causes: 'Bacterial infection in any part of urinary system (kidneys, ureters, bladder, urethra).', solution: 'Antibiotics, increased fluid intake, pain relievers.', reference: 'Urology Guide' },
+                { id: 'urticaria', name: 'Urticaria (Hives)', causes: 'Allergic skin reaction causing itchy, raised welts, due to allergens, stress, temperature changes.', solution: 'Antihistamines, avoiding triggers, corticosteroids for severe cases.', reference: 'Dermatology/Allergy' },
+                { id: 'urethritis', name: 'Urethritis', causes: 'Inflammation of the urethra, often caused by bacterial infection (STIs or UTIs).', solution: 'Antibiotics, treating underlying cause (STI).', reference: 'Urology/Infectious Disease' },
+                { id: 'uveitis', name: 'Uveitis', causes: 'Inflammation of the uvea (middle layer of eye), often autoimmune, infection, or injury.', solution: 'Corticosteroid eye drops, oral corticosteroids, immunosuppressants, treating underlying cause.', reference: 'Ophthalmology Textbook' },
+                { id: 'uremia', name: 'Uremia', causes: 'High levels of urea and other waste products in blood, indicating kidney failure.', solution: 'Dialysis, kidney transplant, treating underlying kidney disease.', reference: 'Nephrology Textbook' },
+                { id: 'undernutrition', name: 'Undernutrition', causes: 'Insufficient intake of calories and essential nutrients, malabsorption, increased needs.', solution: 'Dietary supplementation, addressing malabsorption, nutritional counseling.', reference: 'Nutrition & Public Health' },
+                { id: 'upper_respiratory_infection', name: 'Upper Respiratory Infection (URI)', causes: 'Viral infection of the nose, throat, sinuses (common cold, sinusitis, pharyngitis).', solution: 'Rest, fluids, symptom relief (decongestants, pain relievers).', reference: 'ENT/General Medicine' },
+                { id: 'ureterolithiasis', name: 'Ureterolithiasis', causes: 'Presence of kidney stones in the ureter, causing pain and obstruction.', solution: 'Pain relief, fluids, medication to help pass stone, lithotripsy, ureteroscopy.', reference: 'Urology Guide' },
+                { id: 'ulcerative_colitis', name: 'Ulcerative Colitis', causes: 'Chronic inflammatory bowel disease causing inflammation and ulcers in the large intestine (colon) and rectum.', solution: 'Anti-inflammatory drugs, immunosuppressants, biologics, surgery (colectomy) for severe cases.', reference: 'Gastroenterology Research' }
+            ],
+            'V': [
+                { id: 'varicellazoster', name: 'Varicella-Zoster Virus (Chickenpox/Shingles)', causes: 'Causes chickenpox (primary infection) and shingles (reactivation).', solution: 'Antivirals for severe cases, symptom relief, vaccination for prevention.', reference: 'Infectious Disease Guide' },
+                { id: 'vertigo', name: 'Vertigo', causes: 'Sensation of spinning, often due to inner ear problems (BPPV, Meniere\'s disease) or central nervous system issues.', solution: 'Treating underlying cause, Epley maneuver (BPPV), anti-vertigo medication, vestibular rehabilitation.', reference: 'ENT/Neurology Clinic' },
+                { id: 'viral_fever', name: 'Viral Fever', causes: 'Elevated body temperature due to viral infection (cold, flu, dengue).', solution: 'Rest, fluids, antipyretics (acetaminophen, ibuprofen), symptom management.', reference: 'General Medicine Resource' },
+                { id: 'vitiligo', name: 'Vitiligo', causes: 'Skin condition causing loss of pigment, leading to white patches; autoimmune suspected.', solution: 'Topical corticosteroids, phototherapy, depigmentation, camouflage makeup.', reference: 'Dermatology Journal' },
+                { id: 'vomiting', name: 'Vomiting', causes: 'Stomach flu, food poisoning, migraines, pregnancy, motion sickness, medication side effects.', solution: 'Anti-emetic medication, hydration, bland diet, rest, treating underlying cause.', reference: 'General Medicine Resource' },
+                { id: 'vascular_dementia', name: 'Vascular Dementia', causes: 'Cognitive decline due to reduced blood flow to the brain, often from stroke or narrowed arteries.', solution: 'Managing cardiovascular risk factors (hypertension, diabetes), stroke prevention, cognitive therapy.', reference: 'Alzheimer\'s Association/Neurology' },
+                { id: 'vaginitis', name: 'Vaginitis', causes: 'Inflammation of the vagina, usually from bacterial infection, yeast infection, or trichomoniasis.', solution: 'Antibiotics (bacterial), antifungal creams (yeast), metronidazole (trichomoniasis).', reference: 'Gynecology Guide' },
+                { id: 'varicose_veins', name: 'Varicose Veins', causes: 'Swollen, twisted veins, usually in legs, due to weakened vein walls and valves; genetics, prolonged standing, pregnancy.', solution: 'Compression stockings, lifestyle changes, sclerotherapy, laser treatment, surgery.', reference: 'Vascular Surgery' },
+                { id: 'viral_meningitis', name: 'Viral Meningitis', causes: 'Inflammation of brain/spinal cord membranes caused by viruses (e.g., enteroviruses, herpesviruses).', solution: 'Supportive care, rest, fluids, pain relievers; antiviral drugs for specific viruses.', reference: 'Infectious Disease Textbook' },
+                { id: 'ventricular_tachycardia', name: 'Ventricular Tachycardia (VT)', causes: 'Rapid heart rhythm originating in the ventricles, often due to heart disease or structural abnormalities.', solution: 'Antiarrhythmic medications, cardioversion, implantable cardioverter-defibrillator (ICD), ablation.', reference: 'Cardiology Emergency' }
+            ],
+            'W': [
+                { id: 'warts', name: 'Warts', causes: 'Small, rough growths on skin caused by human papillomavirus (HPV).', solution: 'Salicylic acid, cryotherapy, laser removal, surgical excision.', reference: 'Dermatology Clinic' },
+                { id: 'whiplash', name: 'Whiplash', causes: 'Neck injury due to sudden forceful back-and-forth movement of head, often from car accidents.', solution: 'Pain relievers, physical therapy, muscle relaxants, ice/heat.', reference: 'Orthopedics/Physical Therapy' },
+                { id: 'whooping_cough', name: 'Whooping Cough (Pertussis)', causes: 'Highly contagious bacterial respiratory infection (Bordetella pertussis).', solution: 'Antibiotics, supportive care, vaccination for prevention (DTaP, Tdap).', reference: 'CDC/WHO Pertussis Info' },
+                { id: 'weight_gain', name: 'Unexplained Weight Gain', causes: 'Hormonal imbalances (thyroid, PCOS), fluid retention, certain medications, underlying medical conditions.', solution: 'Medical evaluation to find cause, dietary changes, exercise, adjusting medications.', reference: 'Internal Medicine Resource' },
+                { id: 'weight_loss', name: 'Unexplained Weight Loss', causes: 'Hyperthyroidism, diabetes, GI disorders, cancer, depression, infections.', solution: 'Medical evaluation to find cause, dietary adjustments, nutritional support.', reference: 'General Medicine Resource' },
+                { id: 'wry_neck', name: 'Wry Neck (Torticollis)', causes: 'Neck muscle spasm causing head to twist or tilt, often from injury, poor sleep position, or congenital factors.', solution: 'Heat, massage, gentle stretching, pain relievers, physical therapy.', reference: 'Orthopedics/Physical Therapy' },
+                { id: 'west_nile_virus', name: 'West Nile Virus', causes: 'Viral infection transmitted by mosquitoes, typically causing mild flu-like symptoms, severe cases can affect nervous system.', solution: 'Supportive care, pain relievers; no specific antiviral treatment.', reference: 'CDC West Nile Info' },
+                { id: 'withdrawal_syndrome', name: 'Withdrawal Syndrome', causes: 'Physical and mental symptoms occurring after reducing or stopping a substance (alcohol, drugs) after prolonged use.', solution: 'Medical supervision, medications to manage symptoms, detoxification programs, therapy.', reference: 'Addiction Medicine' },
+                { id: 'whipple_disease', name: 'Whipple\'s Disease', causes: 'Rare bacterial infection (Tropheryma whipplei) affecting small intestine and other organs, causing malabsorption.', solution: 'Long-term antibiotics.', reference: 'Gastroenterology Journal' },
+                { id: 'wilms_tumor', name: 'Wilms Tumor (Nephroblastoma)', causes: 'Rare kidney cancer that primarily affects children, genetic factors.', solution: 'Surgery, chemotherapy, radiation therapy.', reference: 'Pediatric Oncology' }
+            ],
+            'X': [
+                { id: 'xerostomia', name: 'Xerostomia (Dry Mouth)', causes: 'Medication side effects, dehydration, Sjögren\'s syndrome, radiation therapy, nerve damage.', solution: 'Saliva substitutes, increasing fluid intake, avoiding caffeine/alcohol, treating underlying cause.', reference: 'Oral Health Guide' },
+                { id: 'xanthelasma', name: 'Xanthelasma', causes: 'Yellowish fatty deposits under the skin around eyes, often associated with high cholesterol.', solution: 'No medical treatment needed, cosmetic removal (laser, surgery, chemical peel).', reference: 'Dermatology Clinic' },
+                { id: 'xerosis', name: 'Xerosis (Dry Skin)', causes: 'Lack of moisture in skin, often due to dry weather, harsh soaps, hot showers, aging.', solution: 'Moisturizers, humidifiers, gentle cleansing, avoiding harsh soaps, hydration.', reference: 'Dermatology Advice' },
+                { id: 'xlinked_agammaglobulinemia', name: 'X-linked Agammaglobulinemia (XLA)', causes: 'Genetic immunodeficiency disorder affecting B-cell development, leading to recurrent bacterial infections.', solution: 'Intravenous immunoglobulin (IVIG) therapy, prophylactic antibiotics.', reference: 'Immunology Research' },
+                { id: 'xanthomas', name: 'Xanthomas', causes: 'Fatty yellow bumps under skin, usually due to high levels of lipids (fats) in blood.', solution: 'Managing underlying high cholesterol or lipid disorder, cosmetic removal.', reference: 'Dermatology/Endocrinology' },
+                { id: 'xray_burn', name: 'X-Ray Burn (Radiation Burn)', causes: 'Skin damage from excessive exposure to X-rays or radiation.', solution: 'Wound care, pain management, corticosteroids, specialized dressings, surgery for severe cases.', reference: 'Radiology Safety' },
+                { id: 'xenophobia', name: 'Xenophobia', causes: 'Fear or hatred of foreigners or strangers; social and psychological factors.', solution: 'Therapy, education, promoting cultural understanding.', reference: 'Social Psychology' },
+                { id: 'xeroderma_pigmentosum', name: 'Xeroderma Pigmentosum (XP)', causes: 'Rare genetic disorder causing extreme sensitivity to UV light, leading to skin and eye damage, high cancer risk.', solution: 'Strict UV protection, regular skin exams, surgical removal of cancers, genetic counseling.', reference: 'Dermatology/Genetics' },
+                { id: 'x_chromosomedisorder', name: 'X-Chromosome Disorder', causes: 'Genetic conditions linked to abnormalities on the X chromosome (e.g., Turner syndrome, Fragile X syndrome).', solution: 'Symptomatic treatment, hormone therapy, developmental support, genetic counseling.', reference: 'Medical Genetics' },
+                { id: 'xyloribosomal_dystrophy', name: 'Xyloribosomal Dystrophy', causes: 'Rare genetic metabolic disorder affecting bone development.', solution: 'Symptomatic management, supportive care.', reference: 'Rare Disease Research' }
+            ],
+            'Y': [
+                { id: 'yeast_infection', name: 'Yeast Infection (Candidiasis)', causes: 'Fungal infection caused by Candida species, commonly affecting vagina, mouth, skin folds.', solution: 'Antifungal medications (topical creams, oral pills).', reference: 'Gynecology/Dermatology' },
+                { id: 'yellow_fever', name: 'Yellow Fever', causes: 'Viral infection transmitted by mosquitoes, found in tropical areas of Africa and South America.', solution: 'Supportive care, hydration, pain relief; vaccination for prevention.', reference: 'WHO/CDC Yellow Fever Info' },
+                { id: 'yawn_syncope', name: 'Yawn Syncope', causes: 'Fainting spell triggered by yawning, usually due to vagal nerve overstimulation or vascular issues.', solution: 'Medical evaluation to rule out cardiovascular causes, hydration, avoiding prolonged standing.', reference: 'Neurology/Cardiology' },
+                { id: 'yaws', name: 'Yaws', causes: 'Chronic bacterial infection of skin, bones, and joints caused by Treponema pallidum pertenue, prevalent in tropical regions.', solution: 'Single dose of oral azithromycin.', reference: 'WHO Neglected Tropical Diseases' },
+                { id: 'yergasons_sign_pain', name: 'Yergason\'s Sign Pain', causes: 'Pain elicited during Yergason\'s test, indicating pathology of the biceps tendon (e.g., tendinitis, instability).', solution: 'Rest, ice, NSAIDs, physical therapy, surgery for severe tendon issues.', reference: 'Orthopedic Physical Exam' },
+                { id: 'yersiniosis', name: 'Yersiniosis', causes: 'Bacterial infection caused by Yersinia enterocolitica, often from contaminated food or water, causing gastroenteritis.', solution: 'Usually self-limiting, antibiotics for severe or systemic infections.', reference: 'Infectious Disease CDC' },
+                { id: 'yellow_nail_syndrome', name: 'Yellow Nail Syndrome', causes: 'Rare disorder characterized by yellow nails, lymphedema, and respiratory problems; cause unknown.', solution: 'Symptomatic treatment for lymphedema and respiratory issues; vitamin E for nails.', reference: 'Rare Disease Research' },
+                { id: 'yoga_injury', name: 'Yoga-Related Injury', causes: 'Musculoskeletal strains, sprains, or tears from improper form, overstretching, or unsuitable poses.', solution: 'RICE, pain relief, physical therapy, modifying practice, seeking qualified instructors.', reference: 'Sports Injury/Physical Therapy' },
+                { id: 'youngs_syndrome', name: 'Young\'s Syndrome', causes: 'Rare disorder causing chronic sinopulmonary infections and male infertility, believed to be due to abnormal mucus.', solution: 'Antibiotics for infections, fertility treatments.', reference: 'Rare Disease Research' },
+                { id: 'yuzhang_fever', name: 'Yuzhang Fever', causes: 'Fictional fever for demonstration purposes.', solution: 'Supportive care, rest.', reference: 'Fictional Medical Reference' }
+            ],
+            'Z': [
+                { id: 'zika_virus', name: 'Zika Virus Infection', causes: 'Viral infection transmitted by Aedes mosquitoes, can cause birth defects (microcephaly).', solution: 'Supportive care, hydration, pain relief; prevention through mosquito control.', reference: 'WHO/CDC Zika Info' },
+                { id: 'zoster', name: 'Zoster (Shingles)', causes: 'Reactivation of varicella-zoster virus (chickenpox virus) in nerves.', solution: 'Antiviral medications, pain relievers, vaccination for prevention.', reference: 'Infectious Disease Guide' },
+                { id: 'zoonotic_disease', name: 'Zoonotic Disease', causes: 'Infections transmitted from animals to humans (e.g., rabies, Lyme disease, salmonellosis).', solution: 'Treating specific infection, preventing animal contact, vaccination (for some).', reference: 'Veterinary Public Health' },
+                { id: 'zollinger_ellison', name: 'Zollinger-Ellison Syndrome (ZES)', causes: 'Rare disorder causing stomach and duodenal ulcers due to gastrin-producing tumors (gastrinomas).', solution: 'Proton pump inhibitors, surgical removal of tumors.', reference: 'Gastroenterology Textbook' },
+                { id: 'zinc_deficiency', name: 'Zinc Deficiency', causes: 'Insufficient intake or absorption of zinc, leading to impaired immune function, skin issues, growth problems.', solution: 'Zinc supplements, dietary changes (zinc-rich foods).', reference: 'Nutrition & Metabolism' },
+                { id: 'zygomacancer', name: 'Zygoma Cancer', causes: 'Fictional cancer for demonstration purposes.', solution: 'Surgery, radiation.', reference: 'Fictional Oncology' },
+                { id: 'z_disk_myopathy', name: 'Z-Disk Myopathy', causes: 'Muscle disorder affecting the Z-disks of muscle fibers.', solution: 'Supportive care, physical therapy.', reference: 'Neuromuscular Research' },
+                { id: 'zygo_cyst', name: 'Zygo Cyst', causes: 'Fictional cyst for demonstration purposes.', solution: 'Observation, surgical removal if symptomatic.', reference: 'Fictional Pathology' },
+                { id: 'zanamivir_resistance', name: 'Zanamivir Resistance', causes: 'Development of resistance to the antiviral drug Zanamivir by influenza viruses.', solution: 'Use alternative antiviral drugs, supportive care.', reference: 'Antiviral Pharmacology' },
+                { id: 'zootoxin_poisoning', name: 'Zootoxin Poisoning', causes: 'Illness caused by toxins from animals (e.g., snake venom, spider venom).', solution: 'Antivenom, supportive care, wound management.', reference: 'Toxicology' }
+            ]
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const alphabetBtns = document.querySelectorAll('.alphabet-btn');
+            const diseaseListContainer = document.getElementById('diseaseListContainer');
+            const diseaseList = document.getElementById('diseaseList');
+            const currentLetterSpan = document.getElementById('currentLetter');
+            const diseaseDetailsContainer = document.getElementById('diseaseDetailsContainer');
+            const diseaseDetailsContent = document.getElementById('diseaseDetailsContent');
+
+            // Function to load diseases for a given letter
+            function loadDiseases(letter) {
+                diseaseList.innerHTML = ''; // Clear previous list
+                diseaseDetailsContent.innerHTML = '<p class="text-center text-muted">Click on a disease from the list to view its information.</p>'; // Clear details
+                diseaseDetailsContainer.style.display = 'block'; // Ensure details container is visible when list is shown
+
+                const diseases = diseaseData[letter] || [];
+                if (diseases.length > 0) {
+                    currentLetterSpan.textContent = letter;
+                    diseases.forEach(disease => {
+                        const listItem = document.createElement('li');
+                        listItem.className = 'disease-item';
+                        listItem.dataset.diseaseId = disease.id;
+                        listItem.dataset.letter = letter;
+                        listItem.textContent = disease.name;
+                        diseaseList.appendChild(listItem);
+                    });
+                    diseaseListContainer.style.display = 'block';
+                } else {
+                    currentLetterSpan.textContent = letter;
+                    diseaseList.innerHTML = '<li class="text-muted text-center py-3">No diseases found for this letter yet.</li>';
+                    diseaseListContainer.style.display = 'block';
+                }
+            }
+
+            // Function to show disease details
+            function showDiseaseDetails(diseaseId, letter) {
+                const diseasesForLetter = diseaseData[letter];
+                const selectedDisease = diseasesForLetter.find(d => d.id === diseaseId);
+
+                if (selectedDisease) {
+                    diseaseDetailsContent.innerHTML = `
+                        <h4>${selectedDisease.name}</h4>
+                        <p><strong>Causes:</strong> ${selectedDisease.causes}</p>
+                        <p><strong>Solution/Treatment:</strong> ${selectedDisease.solution}</p>
+                        <p><strong>Reference:</strong> <em>${selectedDisease.reference}</em></p>
+                    `;
+                } else {
+                    diseaseDetailsContent.innerHTML = '<p class="text-center text-danger">Disease details not found.</p>';
+                }
+                diseaseDetailsContainer.style.display = 'block'; // Make sure it's visible
+            }
+
+            // Event listener for alphabet buttons
+            alphabetBtns.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const letter = this.dataset.letter;
+                    loadDiseases(letter);
+
+                    // Deactivate all alphabet buttons and activate the clicked one
+                    alphabetBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            // Event listener for disease list items
+            diseaseList.addEventListener('click', function(e) {
+                if (e.target.classList.contains('disease-item')) {
+                    // Deactivate all disease items and activate the clicked one
+                    document.querySelectorAll('.disease-item').forEach(item => item.classList.remove('active'));
+                    e.target.classList.add('active');
+
+                    const diseaseId = e.target.dataset.diseaseId;
+                    const letter = e.target.dataset.letter;
+                    showDiseaseDetails(diseaseId, letter);
+                }
+            });
+
+            // Initially hide the containers and pre-select 'A'
+            diseaseListContainer.style.display = 'none';
+            diseaseDetailsContainer.style.display = 'none';
+            
+            // Trigger a click on the 'A' button to load initial diseases
+            const initialLetterButton = document.querySelector('.alphabet-btn[data-letter="A"]');
+            if(initialLetterButton) {
+                initialLetterButton.click();
+            }
+        });
+
     </script>
 </body>
 </html>
