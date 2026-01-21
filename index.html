@@ -1724,6 +1724,349 @@ body {
 <!-- Font Awesome for icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+<style>
+    /*
+        IMPORTANT: This CSS block defines the new image layouts (e.g., .hero-image-frame, .slide-1-main-img, etc.).
+        You should ideally integrate these styles into your main CSS file for better organization.
+        However, for ease of copy-pasting the hero section, it's included here.
+        Ensure these styles take precedence or are merged correctly with your existing CSS.
+    */
+
+    /* General Styling for Image Frames in Hero Section */
+    .hero-image-frame {
+        position: absolute;
+        overflow: hidden;
+        background-color: rgba(255, 255, 255, 0.15);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth cubic-bezier transition */
+        cursor: pointer; /* Indicates clickability */
+    }
+
+    .hero-image-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.6s ease;
+    }
+
+    .hero-image-frame:hover {
+        transform: translateY(-12px) scale(1.06) !important; /* Enhanced lift and scale */
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5); /* Stronger shadow */
+    }
+    
+    /* Carousel Item Custom Height Adjustments for Visual Balance */
+    #carePlusModernCarousel .carousel-item {
+        display: flex;
+        align-items: center;
+        min-height: 100vh; /* Ensure full viewport height */
+        padding: 60px 0; /* Add vertical padding for content */
+    }
+
+    /* Common Caption Styling Overrides for better readability/emphasis */
+    #carePlusModernCarousel h1 {
+        font-size: 4.8rem; /* Slightly larger heading */
+        font-weight: 900; /* Bolder */
+        text-shadow: 4px 4px 8px var(--text-shadow); /* Stronger text shadow */
+    }
+    #carePlusModernCarousel p {
+        font-size: 1.4rem; /* Slightly larger paragraph */
+        max-width: 700px;
+    }
+
+    /* --- SLIDE 1: Expert Hands, Innovative Solutions --- */
+    .slide-design-1 .hero-image-col {
+        position: relative;
+        height: 520px; /* Adjust height for visual balance */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .slide-1-main-img {
+        width: 450px; /* Larger main image */
+        height: 380px;
+        border-radius: 30px; /* More prominent rounded corners */
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-7deg); /* Centered and rotated */
+        z-index: 2;
+    }
+
+    .slide-1-detail-img {
+        width: 220px;
+        height: 220px;
+        border-radius: 50%; /* Circular detail image */
+        top: 18%; /* Adjusted position */
+        left: 80%; /* Adjusted position */
+        transform: translate(-50%, -50%) rotate(12deg); /* Positioned and rotated */
+        z-index: 3; /* Appears above main image */
+        border: 5px solid rgba(255, 255, 255, 0.6); /* Thicker border */
+    }
+
+    /* --- SLIDE 2: Advanced Technology. Precise Diagnostics. --- */
+    .slide-design-2 .grid-img-card {
+        background: rgba(255, 255, 255, 0.25); /* More opaque for glass effect */
+        border: 2px solid rgba(255, 255, 255, 0.4); /* Clearer border */
+        backdrop-filter: blur(12px); /* Stronger glassmorphism */
+        border-radius: 25px;
+        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* More bouncy effect */
+        padding: 30px; /* More padding */
+        cursor: pointer;
+    }
+    .slide-design-2 .grid-img-card:hover {
+        transform: translateY(-15px) scale(1.06);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+    }
+    .slide-design-2 .grid-img-card img {
+        width: 120px; /* Slightly larger circle */
+        height: 120px;
+        border: 6px solid var(--accent); /* Accent border */
+        box-shadow: 0 0 20px rgba(255, 167, 38, 0.6); /* Stronger glowing effect */
+    }
+    .slide-design-2 .grid-img-card p {
+        font-size: 1.2rem;
+        font-weight: 700;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    }
+
+    /* --- SLIDE 3: Gentle Hands. Loving Care. --- */
+    .slide-design-3 .hero-image-col {
+        position: relative;
+        height: 580px; /* Adjusted height for new shapes */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        perspective: 1200px; /* Deeper 3D perspective */
+    }
+
+    .slide-3-layered-card {
+        position: relative;
+        width: 90%; /* More responsive width */
+        max-width: 480px; /* Increased max width */
+        height: 260px; /* Increased height */
+        border-radius: 25px; /* More rounded */
+        margin: 18px 0; /* More space between */
+        background-color: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
+        border: 2px solid rgba(255, 255, 255, 0.4);
+        transform-style: preserve-3d;
+        transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Smooth, bouncy 3D transition */
+        cursor: pointer;
+    }
+
+    .slide-3-layered-card:first-child {
+        transform: translateZ(-30px) rotateY(-15deg) translateX(-40px); /* Pushed back, more rotated */
+        opacity: 0.85;
+        z-index: 1;
+    }
+    .slide-3-layered-card:last-child {
+        transform: translateZ(30px) rotateY(15deg) translateX(40px); /* Pulled forward, more rotated */
+        z-index: 2;
+        margin-top: -80px; /* More significant overlap */
+    }
+
+    .slide-3-layered-card:hover {
+        transform: translateZ(0) rotateY(0deg) translateX(0) scale(1.08) translateY(-15px) !important; /* Straighten, pop, and lift on hover */
+        opacity: 1;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    }
+
+    /* --- SLIDE 4: A Team You Can Trust. --- */
+    .slide-design-4 .overlay-card {
+        padding: 18px;
+        border-radius: 25px;
+        backdrop-filter: blur(15px); /* Stronger blur */
+        box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+        border: 2px solid rgba(255, 255, 255, 0.4);
+        transition: all 0.4s ease-out; /* Smoother transition */
+        cursor: pointer;
+    }
+    .slide-design-4 .overlay-card.shifted {
+        margin-top: 70px; /* More pronounced shift */
+        transform: scale(1.1) rotate(5deg); /* Slightly larger and more rotated */
+        z-index: 2;
+    }
+    .slide-design-4 .overlay-card:not(.shifted) {
+        transform: rotate(-5deg); /* More initial rotation */
+    }
+    .slide-design-4 .overlay-card:hover {
+        transform: translateY(-20px) scale(1.15) rotate(0deg) !important; /* Emphasized hover */
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+    }
+    .slide-design-4 .overlay-card img {
+        border-radius: 18px; /* Match card radius */
+        filter: brightness(1); /* Full brightness */
+    }
+    .slide-design-4 .overlay-card .card-text {
+        font-size: 1.3rem;
+        padding: 30px 25px 20px 25px;
+        font-weight: 800;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    /* --- SLIDE 5: Precision. Compassion. Recovery. --- */
+    .slide-design-5 .hero-image-col {
+        position: relative;
+        height: 550px; /* Adjusted height */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .slide-5-large-frame {
+        width: 100%;
+        max-width: 600px; /* Larger main frame */
+        height: 420px; /* Taller */
+        border-radius: 30px;
+        position: relative;
+        z-index: 1;
+        transform: rotate(-6deg); /* More rotation */
+    }
+    .slide-5-small-frame-1, .slide-5-small-frame-2 {
+        width: 250px; /* Larger small frames */
+        height: 200px;
+        border-radius: 20px;
+        position: absolute;
+        z-index: 2;
+    }
+    .slide-5-small-frame-1 {
+        top: -5%; /* Higher */
+        left: 65%; /* More to the right */
+        transform: rotate(10deg);
+    }
+    .slide-5-small-frame-2 {
+        bottom: -5%; /* Lower */
+        left: 0%; /* Further left */
+        transform: rotate(-12deg);
+    }
+    /* Hover for elements in slide 5 */
+    .slide-5-large-frame:hover, .slide-5-small-frame-1:hover, .slide-5-small-frame-2:hover {
+        transform: translateY(-15px) scale(1.08) rotate(0deg) !important; /* Emphasized hover */
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    }
+
+
+    /* --- SLIDE 6: Healing Environments for All. --- */
+    .slide-design-6 .slide-6-images-stack {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0px; /* Maintain overlap */
+        position: relative;
+    }
+    .slide-6-images-stack .hero-image-frame {
+        position: relative;
+        margin: 0;
+        width: 100%;
+        max-width: 650px; /* Wider frames */
+        border-radius: 25px;
+        cursor: pointer;
+    }
+    .slide-6-images-stack .hero-image-frame:nth-child(1) {
+        height: 320px; /* Taller first image */
+        transform: rotate(-5deg) scale(0.95) translateX(-20px); /* More pronounced initial position */
+        z-index: 1;
+    }
+    .slide-6-images-stack .hero-image-frame:nth-child(2) {
+        height: 280px; /* Taller second image */
+        margin-top: -120px; /* More significant overlap */
+        transform: rotate(7deg) translateX(50px) scale(1.08); /* More rotated, shifted, and larger */
+        z-index: 2;
+        box-shadow: 0 18px 45px rgba(0, 0, 0, 0.45);
+    }
+    .slide-6-images-stack .hero-image-frame:hover {
+        transform: translateY(-15px) scale(1.1) rotate(0deg) translateX(0px) !important; /* Stronger lift and scale */
+        box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+    }
+
+    /* --- SLIDE 7: Monitoring Your Health, Carefully. --- */
+    .slide-design-7 .hero-image-col {
+        position: relative;
+        height: 580px; /* Adjusted height */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .slide-7-main-display {
+        width: 100%;
+        max-width: 550px; /* Wider main display */
+        height: 380px; /* Taller */
+        border-radius: 30px;
+        position: relative;
+        z-index: 1;
+        transform: rotate(-9deg); /* More rotation */
+        overflow: hidden;
+    }
+    .slide-7-main-display img {
+        filter: brightness(0.85); /* Slightly more dim for overlay text or UI effect */
+    }
+
+    .slide-7-doctor-overlay {
+        width: 300px; /* Larger overlay */
+        height: 280px; /* Taller */
+        border-radius: 25px;
+        position: absolute;
+        top: 65%; /* Adjusted position */
+        left: 70%; /* Adjusted position */
+        transform: translate(-50%, -50%) rotate(10deg); /* More rotation */
+        z-index: 2;
+        border: 4px solid rgba(255, 255, 255, 0.7); /* Clearer and thicker border */
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+    }
+    .slide-7-main-display:hover, .slide-7-doctor-overlay:hover {
+        transform: translateY(-15px) scale(1.08) rotate(0deg) translate(0,0) !important; /* Stronger hover effect */
+        box-shadow: 0 25px 55px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Responsive adjustments for new shapes */
+    @media (max-width: 992px) {
+        #carePlusModernCarousel h1 { font-size: 3.5rem; }
+        #carePlusModernCarousel p { font-size: 1.1rem; }
+
+        .slide-design-1 .hero-image-col,
+        .slide-design-3 .hero-image-col,
+        .slide-design-5 .hero-image-col,
+        .slide-design-7 .hero-image-col {
+            height: auto;
+            flex-direction: column;
+            padding: 40px 20px; /* Add padding for small screens */
+        }
+
+        .hero-image-frame,
+        .slide-3-layered-card,
+        .slide-5-large-frame, .slide-5-small-frame-1, .slide-5-small-frame-2,
+        .slide-6-images-stack .hero-image-frame,
+        .slide-7-main-display, .slide-7-doctor-overlay {
+            position: relative; /* Revert to normal flow */
+            transform: none !important; /* Remove all rotations, translations */
+            margin: 15px auto !important; /* Center with spacing */
+            width: 90% !important; /* Occupy full width within column */
+            max-width: 400px; /* Keep a reasonable max-width */
+            height: 250px !important; /* Standardize height */
+            top: auto !important;
+            left: auto !important;
+            bottom: auto !important;
+            right: auto !important;
+            z-index: auto !important;
+            border-radius: 15px !important; /* Consistent radius */
+        }
+
+        /* Specific adjustments for stacked images on mobile */
+        .slide-6-images-stack .hero-image-frame:nth-child(2) {
+            margin-top: 15px !important; /* Normal spacing on mobile */
+        }
+        .slide-7-doctor-overlay {
+            margin-top: 15px !important;
+        }
+
+        .slide-2-grid-images .col-md-4 {
+            flex: 0 0 90%; /* One card per row on small screens */
+            max-width: 90%;
+        }
+    }
+</style>
 
 <section id="hero-ultra-modern">
   <!-- Abstract Global/Graph Elements (common for all slides) -->
@@ -1742,14 +2085,14 @@ body {
       <button type="button" data-bs-target="#carePlusModernCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
       <button type="button" data-bs-target="#carePlusModernCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
       <button type="button" data-bs-target="#carePlusModernCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
-      <button type="button" data-bs-target="#carePlusModernCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+      <button type="button" data-bs-target="#carePlusModernCarousel" data-bs-slide-to="4" aria-current="true" aria-label="Slide 5"></button>
       <button type="button" data-bs-target="#carePlusModernCarousel" data-bs-slide-to="5" aria-label="Slide 6"></button>
       <button type="button" data-bs-target="#carePlusModernCarousel" data-bs-slide-to="6" aria-label="Slide 7"></button>
     </div>
 
     <div class="carousel-inner">
 
-      <!-- Slide 1: Expert Doctors & Innovative Care - Split Layout with Triangular Images -->
+      <!-- Slide 1: Expert Hands, Innovative Solutions. - Main + Circular Detail Image -->
       <div class="carousel-item active slide-design-1">
         <div class="container hero-content-wrapper">
           <div class="row align-items-center">
@@ -1760,18 +2103,18 @@ body {
               <a href="#services" class="btn-hero animate__animated animate__zoomIn animate__delay-1s">Meet Our Doctors <i class="fas fa-user-md ms-2"></i></a>
             </div>
             <div class="col-lg-6 hero-image-col slide-1-images animate__animated animate__fadeInRight animate__delay-0-5s">
-              <div class="triangle-img-container triangle-left">
-                <img src="https://images.pexels.com/photos/3825586/pexels-photo-3825586.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Doctor preparing for surgery" class="img-fluid triangle-clip-left">
+              <div class="hero-image-frame slide-1-main-img" data-bs-toggle="modal" data-bs-target="#imageFullscreenModal" data-bs-src="https://images.pexels.com/photos/27059205/pexels-photo-27059205.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750">
+                <img src="https://images.pexels.com/photos/27059205/pexels-photo-27059205.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750" alt="Doctor preparing for surgery" loading="lazy">
               </div>
-              <div class="triangle-img-container triangle-right">
-                <img src="https://images.pexels.com/photos/5407222/pexels-photo-5407222.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Female doctor holding a pen" class="img-fluid triangle-clip-right">
+              <div class="hero-image-frame slide-1-detail-img" data-bs-toggle="modal" data-bs-target="#imageFullscreenModal" data-bs-src="https://images.pexels.com/photos/7904474/pexels-photo-7904474.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750">
+                <img src="https://images.pexels.com/photos/7904474/pexels-photo-7904474.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750" alt="Female doctor holding a pen" loading="lazy">
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Slide 2: Modern Diagnostics & Technology - Centered & Grid-like -->
+      <!-- Slide 2: Modern Diagnostics & Technology - Centered & Grid-like with Enhanced Cards -->
       <div class="carousel-item slide-design-2">
         <div class="container hero-content-wrapper text-center">
           <div class="animate__animated animate__fadeInDown">
@@ -1781,21 +2124,21 @@ body {
           <p class="lead animate__animated animate__fadeInUp animate__delay-0-5s">Utilizing cutting-edge tools for accurate assessments and effective treatment plans.</p>
           <div class="slide-2-grid-images mt-4 row justify-content-center animate__animated animate__zoomIn animate__delay-1s">
             <div class="col-md-4 col-sm-6 mb-3">
-              <div class="grid-img-card">
-                <img src="https://images.pexels.com/photos/5407249/pexels-photo-5407249.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Doctor holding a tablet" class="img-fluid rounded-circle">
+              <div class="grid-img-card" data-bs-toggle="modal" data-bs-target="#imageFullscreenModal" data-bs-src="https://images.pexels.com/photos/35119974/pexels-photo-35119974.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750">
+                <img src="https://images.pexels.com/photos/35119974/pexels-photo-35119974.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750" alt="Happy family moment with baby on couch" class="img-fluid rounded-circle" loading="lazy">
                 <p>Digital Consults</p>
               </div>
             </div>
             <div class="col-md-4 col-sm-6 mb-3">
-              <div class="grid-img-card">
-                <img src="https://images.pexels.com/photos/5214967/pexels-photo-5214967.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Doctor talking on the phone" class="img-fluid rounded-circle">
-                <p>Connected Care</p>
+              <div class="grid-img-card" data-bs-toggle="modal" data-bs-target="#imageFullscreenModal" data-bs-src="https://images.pexels.com/photos/7653084/pexels-photo-7653084.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750">
+                <img src="https://images.pexels.com/photos/7653084/pexels-photo-7653084.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750" alt="Doctor in consultation with mother and daughter" class="img-fluid rounded-circle" loading="lazy">
+                <p>Thorough Exams</p>
               </div>
             </div>
             <div class="col-md-4 col-sm-6 mb-3">
-              <div class="grid-img-card">
-                <img src="https://images.pexels.com/photos/7653333/pexels-photo-7653333.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Doctor holding a glucometer" class="img-fluid rounded-circle">
-                <p>Accurate Testing</p>
+              <div class="grid-img-card" data-bs-toggle="modal" data-bs-target="#imageFullscreenModal" data-bs-src="https://images.pexels.com/photos/7653127/pexels-photo-7653127.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750">
+                <img src="https://images.pexels.com/photos/7653127/pexels-photo-7653127.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750" alt="Mother and daughter listening to doctor" class="img-fluid rounded-circle" loading="lazy">
+                <p>Connected Care</p>
               </div>
             </div>
           </div>
@@ -1803,29 +2146,29 @@ body {
         </div>
       </div>
 
-      <!-- Slide 3: Compassionate Care for Children - Dynamic Diagonal Layout -->
+      <!-- Slide 3: Gentle Hands. Loving Care. - Layered and Rotated Cards -->
       <div class="carousel-item slide-design-3">
         <div class="container hero-content-wrapper">
           <div class="row align-items-center">
-            <div class="col-lg-6 hero-text-col slide-3-text animate__animated animate__fadeInRight">
+            <div class="col-lg-6 hero-text-col animate__animated animate__fadeInRight">
               <p class="hospital-name">CARE PLUS HOSPITAL</p>
               <h1>Gentle Hands. Loving Care.</h1>
               <p>Our pediatric specialists ensure your child receives the most compassionate and effective treatment.</p>
               <a href="#pediatrics" class="btn-hero animate__animated animate__pulse animate__delay-1s infinite">Child Care Services <i class="fas fa-baby ms-2"></i></a>
             </div>
             <div class="col-lg-6 hero-image-col slide-3-images animate__animated animate__fadeInLeft animate__delay-0-5s">
-              <div class="diag-container diag-top">
-                <img src="https://images.pexels.com/photos/7653112/pexels-photo-7653112.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Doctor checking a child" class="img-fluid diag-clip-top">
+              <div class="slide-3-layered-card" data-bs-toggle="modal" data-bs-target="#imageFullscreenModal" data-bs-src="https://images.pexels.com/photos/7088531/pexels-photo-7088531.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750">
+                <img src="https://images.pexels.com/photos/7088531/pexels-photo-7088531.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750" alt="People woman sitting technology" loading="lazy">
               </div>
-              <div class="diag-container diag-bottom">
-                <img src="https://images.pexels.com/photos/7653111/pexels-photo-7653111.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Doctor checking another child" class="img-fluid diag-clip-bottom">
+              <div class="slide-3-layered-card" data-bs-toggle="modal" data-bs-target="#imageFullscreenModal" data-bs-src="https://images.pexels.com/photos/7055322/pexels-photo-7055322.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750">
+                <img src="https://images.pexels.com/photos/7055322/pexels-photo-7055322.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750" alt="Woman and child holding mug" loading="lazy">
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Slide 4: Our Dedicated Healthcare Team - Overlapping Cards Layout -->
+      <!-- Slide 4: A Team You Can Trust. - Staggered Team Cards -->
       <div class="carousel-item slide-design-4">
         <div class="container hero-content-wrapper">
           <div class="animate__animated animate__fadeInDown text-center">
@@ -1835,20 +2178,20 @@ body {
           <p class="lead text-center animate__animated animate__fadeInUp animate__delay-0-5s">Our experienced and dedicated professionals are here to support your journey to wellness.</p>
           <div class="slide-4-image-grid row justify-content-center mt-5">
             <div class="col-lg-4 col-md-6 mb-4 animate__animated animate__fadeInUp animate__delay-1s">
-              <div class="overlay-card">
-                <img src="https://images.pexels.com/photos/6129494/pexels-photo-6129494.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Smiling healthcare professionals" class="img-fluid rounded-lg">
+              <div class="overlay-card" data-bs-toggle="modal" data-bs-target="#imageFullscreenModal" data-bs-src="https://images.pexels.com/photos/6129494/pexels-photo-6129494.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750">
+                <img src="https://images.pexels.com/photos/6129494/pexels-photo-6129494.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750" alt="Smiling healthcare professionals" class="img-fluid rounded-lg" loading="lazy">
                 <div class="card-text">Friendly Faces</div>
               </div>
             </div>
             <div class="col-lg-4 col-md-6 mb-4 animate__animated animate__fadeInUp animate__delay-1-2s">
-              <div class="overlay-card shifted">
-                <img src="https://images.pexels.com/photos/5327649/pexels-photo-5327649.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Medical professionals in scrub suits" class="img-fluid rounded-lg">
+              <div class="overlay-card shifted" data-bs-toggle="modal" data-bs-target="#imageFullscreenModal" data-bs-src="https://images.pexels.com/photos/9054999/pexels-photo-9054999.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750">
+                <img src="https://images.pexels.com/photos/9054999/pexels-photo-9054999.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750" alt="Medical professionals in scrub suits" class="img-fluid rounded-lg" loading="lazy">
                 <div class="card-text">Skilled Professionals</div>
               </div>
             </div>
             <div class="col-lg-4 col-md-6 mb-4 animate__animated animate__fadeInUp animate__delay-1-4s">
-              <div class="overlay-card">
-                <img src="https://images.pexels.com/photos/15238817/pexels-photo-15238817.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Group of five medical doctors" class="img-fluid rounded-lg">
+              <div class="overlay-card" data-bs-toggle="modal" data-bs-target="#imageFullscreenModal" data-bs-src="https://images.pexels.com/photos/34377239/pexels-photo-34377239.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750">
+                <img src="https://images.pexels.com/photos/34377239/pexels-photo-34377239.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750" alt="Proud medical graduate celebrating achievement" class="img-fluid rounded-lg" loading="lazy">
                 <div class="card-text">Expert Leadership</div>
               </div>
             </div>
@@ -1859,21 +2202,19 @@ body {
         </div>
       </div>
 
-      <!-- Slide 5: Advanced Procedures & Patient Interaction - Creative Grid -->
+      <!-- Slide 5: Precision. Compassion. Recovery. - Large Frame with Overlapping Small Frames -->
       <div class="carousel-item slide-design-5">
         <div class="container hero-content-wrapper">
           <div class="row align-items-center">
             <div class="col-lg-6 hero-image-col slide-5-images animate__animated animate__fadeInLeft">
-              <div class="photo-grid">
-                <div class="grid-item item-lg">
-                  <img src="https://images.pexels.com/photos/7108266/pexels-photo-7108266.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Medical practitioners at operating table" class="img-fluid rounded-lg">
-                </div>
-                <div class="grid-item item-sm-1">
-                  <img src="https://images.pexels.com/photos/263337/pexels-photo-263337.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Doctors doing operation" class="img-fluid rounded-lg">
-                </div>
-                <div class="grid-item item-sm-2">
-                  <img src="https://images.pexels.com/photos/6129197/pexels-photo-6129197.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Doctors talking beside patient" class="img-fluid rounded-lg">
-                </div>
+              <div class="hero-image-frame slide-5-large-frame" data-bs-toggle="modal" data-bs-target="#imageFullscreenModal" data-bs-src="https://images.pexels.com/photos/11288665/pexels-photo-11288665.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750">
+                  <img src="https://images.pexels.com/photos/11288665/pexels-photo-11288665.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750" alt="Medical equipment in a hospital" class="img-fluid" loading="lazy">
+              </div>
+              <div class="hero-image-frame slide-5-small-frame-1" data-bs-toggle="modal" data-bs-target="#imageFullscreenModal" data-bs-src="https://images.pexels.com/photos/6129240/pexels-photo-6129240.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750">
+                  <img src="https://images.pexels.com/photos/6129240/pexels-photo-6129240.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750" alt="Physician checking patient" class="img-fluid" loading="lazy">
+              </div>
+              <div class="hero-image-frame slide-5-small-frame-2" data-bs-toggle="modal" data-bs-target="#imageFullscreenModal" data-bs-src="https://images.pexels.com/photos/6129197/pexels-photo-6129197.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750">
+                  <img src="https://images.pexels.com/photos/6129197/pexels-photo-6129197.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750" alt="Doctors talking beside patient" class="img-fluid" loading="lazy">
               </div>
             </div>
             <div class="col-lg-6 hero-text-col animate__animated animate__fadeInRight animate__delay-0-5s">
@@ -1886,7 +2227,7 @@ body {
         </div>
       </div>
 
-      <!-- Slide 6: Modern Facilities & Inviting Environment - Building/Interior Focus -->
+      <!-- Slide 6: Healing Environments for All. - Stacked Angled Images -->
       <div class="carousel-item slide-design-6">
         <div class="container hero-content-wrapper text-center">
             <div class="animate__animated animate__fadeInDown">
@@ -1895,25 +2236,27 @@ body {
             </div>
             <p class="lead animate__animated animate__fadeInUp animate__delay-0-5s">Our state-of-the-art building and comfortable interiors are designed for your peace of mind.</p>
             <div class="slide-6-images-stack mt-5 row justify-content-center animate__animated animate__zoomIn animate__delay-1s">
-                <div class="col-lg-8 col-md-10 mb-4">
-                    <img src="https://images.pexels.com/photos/16056111/pexels-photo-16056111.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Hospital Building Exterior" class="img-fluid rounded-lg shadow-lg">
+                <div class="hero-image-frame" data-bs-toggle="modal" data-bs-target="#imageFullscreenModal" data-bs-src="https://images.pexels.com/photos/7563452/pexels-photo-7563452.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750">
+                    <img src="https://images.pexels.com/photos/7563452/pexels-photo-7563452.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750" alt="Hospital Building Exterior" loading="lazy">
                 </div>
-                <div class="col-lg-6 col-md-8">
-                    <img src="https://images.pexels.com/photos/127873/pexels-photo-127873.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Hospital Interior Room" class="img-fluid rounded-lg shadow-lg">
+                <div class="hero-image-frame" data-bs-toggle="modal" data-bs-target="#imageFullscreenModal" data-bs-src="https://images.pexels.com/photos/127873/pexels-photo-127873.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750">
+                    <img src="https://images.pexels.com/photos/127873/pexels-photo-127873.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750" alt="Hospital Interior Room" loading="lazy">
                 </div>
             </div>
             <a href="#gallery" class="btn-hero mt-5 animate__animated animate__bounceIn animate__delay-1-8s">View Our Gallery <i class="fas fa-images ms-2"></i></a>
         </div>
       </div>
 
-      <!-- Slide 7: Advanced Monitoring & Personalized Doctor Interaction - Focused Images -->
+      <!-- Slide 7: Monitoring Your Health, Carefully. - Main Display with Overlaid Doctor -->
       <div class="carousel-item slide-design-7">
         <div class="container hero-content-wrapper">
           <div class="row align-items-center">
             <div class="col-lg-6 hero-image-col slide-7-images animate__animated animate__fadeInLeft">
-                <div class="stacked-images">
-                    <img src="https://images.pexels.com/photos/939325/pexels-photo-939325.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Medical monitor screen" class="img-fluid rounded-lg shadow-lg mb-4">
-                    <img src="https://images.pexels.com/photos/6749773/pexels-photo-6749773.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Woman doctor wearing a stethoscope" class="img-fluid rounded-lg shadow-lg">
+                <div class="hero-image-frame slide-7-main-display" data-bs-toggle="modal" data-bs-target="#imageFullscreenModal" data-bs-src="https://images.pexels.com/photos/6129495/pexels-photo-6129495.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750">
+                    <img src="https://images.pexels.com/photos/6129495/pexels-photo-6129495.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750" alt="Female patient sitting on examination table" loading="lazy">
+                </div>
+                <div class="hero-image-frame slide-7-doctor-overlay" data-bs-toggle="modal" data-bs-target="#imageFullscreenModal" data-bs-src="https://images.pexels.com/photos/6129492/pexels-photo-6129492.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750">
+                    <img src="https://images.pexels.com/photos/6129492/pexels-photo-6129492.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750" alt="Worried woman beside a female patient" loading="lazy">
                 </div>
             </div>
             <div class="col-lg-6 hero-text-col animate__animated animate__fadeInRight animate__delay-0-5s">
@@ -1937,7 +2280,35 @@ body {
       <span class="visually-hidden">Next</span>
     </button>
   </div>
+
+  <!-- Fullscreen Image Modal (Lightbox) -->
+  <div class="modal fade" id="imageFullscreenModal" tabindex="-1" aria-labelledby="imageFullscreenModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+      <div class="modal-content bg-dark">
+        <div class="modal-header border-0">
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body d-flex align-items-center justify-content-center">
+          <img src="" class="img-fluid" id="fullscreenImage" alt="Fullscreen Image">
+        </div>
+      </div>
+    </div>
+  </div>
+
 </section>
+
+<!-- Add this JavaScript at the end of your body or in a script tag after Bootstrap JS -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const imageFullscreenModal = document.getElementById('imageFullscreenModal');
+        imageFullscreenModal.addEventListener('show.bs.modal', function (event) {
+            const button = event.relatedTarget; // Button that triggered the modal
+            const imageUrl = button.getAttribute('data-bs-src'); // Extract info from data-bs-src attribute
+            const modalImage = imageFullscreenModal.querySelector('#fullscreenImage');
+            modalImage.src = imageUrl; // Update the modal's image source
+        });
+    });
+</script>
         <!-- About Section -->
         <section class="about-section section-padding" id="about">
             <div class="container">
@@ -3467,3 +3838,4 @@ body {
     </script>
 </body>
 </html>
+
