@@ -3324,8 +3324,7 @@ body {
         </div>
     </div>
 </section>
-
-    <!-- Footer -->
+<!-- Footer -->
     <footer>
         <div class="container">
             <div class="row">
@@ -3337,22 +3336,32 @@ body {
                         Providing quality healthcare with unwavering care and utmost responsibility, ensuring the holistic well-being and health of every cherished patient.
                     </p>
                 </div>
+
                 <div class="col-lg-4 mb-4">
                     <h5 class="mb-3" style="color: var(--primary);">Quick Links</h5>
-                    <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#video-insights">Clinic Insights</a></li>
-                        <li><a href="#doctors">Our Doctors</a></li>
-                        <li><a href="#services">Services Offered</a></li>
-                        <li><a href="#specialties">Medical Specialties</a></li>
-                        <li><a href="#patient-resources">Patient Resources</a></li>
-                        <li><a href="#medical-dictionary">Medical Dictionary</a></li>
-                        <li><a href="#gallery">Our Gallery</a></li>
-                        <li><a href="#appointment">Book Appointment</a></li>
-                        <li><a href="#contact">Contact Us</a></li>
-                    </ul>
+                    <div class="row">
+                        <div class="col-6">
+                            <ul class="footer-links">
+                                <li><a href="#home">Home</a></li>
+                                <li><a href="#about">About Us</a></li>
+                                <li><a href="#video-insights">Clinic Insights</a></li>
+                                <li><a href="#doctors">Our Doctors</a></li>
+                                <li><a href="#services">Services Offered</a></li>
+                                <li><a href="#specialties">Medical Specialties</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-6">
+                            <ul class="footer-links">
+                                <li><a href="#patient-resources">Patient Resources</a></li>
+                                <li><a href="#medical-dictionary">Medical Dictionary</a></li>
+                                <li><a href="#gallery">Our Gallery</a></li>
+                                <li><a href="#appointment">Book Appointment</a></li>
+                                <li><a href="#contact">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
+
                 <div class="col-lg-4 mb-4">
                     <h5 class="mb-3" style="color: var(--primary);">Connect With Us</h5>
                     <address style="color: rgba(255,255,255,0.7);">
@@ -3360,14 +3369,55 @@ body {
                         <p><i class="fas fa-envelope me-2"></i><a href="mailto:careplusclinic@gmail.com" style="color: inherit; text-decoration: none;">careplusclinic@gmail.com</a></p>
                         <p><i class="fas fa-map-marker-alt me-2"></i>Nishtar Hospital, Abdali Road, Multan</p>
                     </address>
+                    <div class="social-links mt-4">
+                        <a href="#" target="_blank" class="social-icon-animated" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" target="_blank" class="social-icon-animated" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank" class="social-icon-animated" aria-label="X (Twitter)"><i class="fab fa-twitter"></i></a>
+                        <a href="#" target="_blank" class="social-icon-animated" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" target="_blank" class="social-icon-animated" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; <span id="current-year"></span> CarePlus Medical Clinic. All rights reserved. | Developed by Muhammad Umair & Team.Thanks for our vistor and Doctors please send message and get a complete website or software urgent cheap price.</p>
+                <p>&copy; <span id="current-year"></span> CarePlus Medical Clinic. All rights reserved. | Developed by Muhammad Umair & Team. For inquiries regarding website or software development, please feel free to contact us.</p>
             </div>
         </div>
     </footer>
 
+    <!-- Add this to your <head> or at the end of your <body> before </body> tag for custom styles -->
+    <style>
+        .social-links .social-icon-animated {
+            color: rgba(255, 255, 255, 0.8); /* Slightly brighter default */
+            font-size: 2rem; /* Increased size */
+            margin-right: 20px; /* Increased margin for better spacing */
+            transition: transform 0.3s ease, color 0.3s ease; /* Smooth transition for animation */
+            display: inline-block; /* Essential for transform to work correctly */
+        }
+
+        .social-links .social-icon-animated:hover {
+            transform: scale(1.2); /* Zoom effect on hover */
+            color: var(--primary); /* Example: Change color on hover to your primary theme color */
+            /* You might need to define --primary variable in your main CSS or use a specific color like #007bff */
+        }
+
+        /* Adjustments for the quick links lists */
+        .footer-links li {
+            margin-bottom: 8px; /* Space between links */
+        }
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer-links a:hover {
+            color: var(--primary); /* Hover effect for links */
+        }
+
+        /* Ensure the current-year script is present in your JS */
+        /* <script>
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+        </script> */
+    </style>
     <!-- Floating Buttons -->
     <div class="floating-buttons">
         <a href="tel:+923184195665" class="floating-btn call" title="Call Now" aria-label="Call CarePlus Clinic">
@@ -3838,4 +3888,5 @@ body {
     </script>
 </body>
 </html>
+
 
